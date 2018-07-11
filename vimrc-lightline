@@ -1,0 +1,346 @@
+"------SETTINGS------
+let g:lightline = {}
+
+let g:lightline.colorscheme = "molokai_mod"
+
+let g:lightline.separator = { "left": "", "right": "" }
+
+let g:lightline.subseparator = { "left": "", "right": "" }
+
+let g:lightline.component = {}
+"\ }
+
+let g:lightline.component_visible_condition = {
+\ }
+
+let g:lightline.component_function = {
+	\ "mode": "StatusMode",
+	\ "file": "StatusFile",
+	\ "flags": "StatusFlags",
+	\ "filetype": "StatusFileType",
+	\ "filedata": "StatusFileData",
+	\ "percent": "StatusPercent",
+	\ "lineinfo": "StatusLineInfo",
+	\
+	\ "noscrollbar": "StatusNoscrollbar",
+	\ "nerd_tree_dir": "StatusNERDTreeDir",
+	\ "buffergator": "StatusBuffergator",
+\ }
+
+let g:lightline.component_function_visible_condition = {
+	\ "file": "StatusToDisplayFile()",
+	\ "flags": "StatusToDisplayFlags(StatusGetFlags())",
+	\ "filetype": "StatusToDisplayFileType()",
+	\ "filedata": "StatusToDisplayFileData()",
+	\ "percent": "StatusToDisplayPercent()",
+	\ "lineinfo": "StatusToDisplayLineInfo()",
+	\
+	\ "noscrollbar": "StatusToDisplayNoscrollbar()",
+	\ "nerd_tree_dir": "StatusGetSpecial() == 'NERDTree'",
+	\ "buffergator": "StatusGetSpecial() == 'Buffergator'",
+\ }
+
+let lightline.tab_component_function = {
+	\ "tabnum": "TabsTabNum",
+	\ "wincount": "TabsWinCount",
+\ }
+
+let g:lightline.mode_map = {
+\ }
+
+let g:lightline.active = {
+	\ "left": [["mode", "paste"], ["buffergator", "nerd_tree_dir", "file", "flags"], ["filetype", "filedata"]],
+	\ "right": [["percent", "lineinfo", "linetest"], ["noscrollbar"]]
+\ }
+
+let g:lightline.inactive = {
+	\ "left": [["nerd_tree_dir", "file", "flags"]],
+\ }
+
+let g:lightline.tabline = { "right": [] }
+
+let g:lightline.tab = {
+	\ 'active': [ 'tabnum', 'filename', 'modified', 'wincount'],
+	\ 'inactive': [ 'tabnum', 'filename', 'modified', 'wincount']
+\ }
+
+"------COMPONENTS------
+let s:component_min_widths = {
+	\ "full_mode": 68,
+	\ "file_relativepath": 107,
+	\ "file_name": 30,
+	\ "flags": 40,
+	\ "filetype": 120,
+	\ "filedata": 130,
+	\ "percent": 63,
+	\
+	\ "lineinfo_glyph": 56,
+	\ "lineinfo_max_lines": 56,
+	\ "lineinfo": 51,
+	\
+	\ "noscrollbar": 88,
+	\ "nerd_tree_dir": 56,
+	\ "buffergator": 25,
+	\
+	\ "readonly": 65,
+	\ "modified": 65,
+\ }
+
+function! StatusGetSpecial()
+	let l:file_name = expand("%:t")
+
+	if exists("b:NERDTree")
+		return "NERDTree"
+	elseif exists("b:buffergator_catalog_viewer")
+		return "Buffergator"
+	elseif exists("b:plug_preview")
+		return "Plug"
+	endif
+
+	return ""
+endfunction
+
+" Mode
+let s:mode_map = {
+	\ "n": "NORMAL",
+	\
+	\ "i": "INSERT",
+	\
+	\ "R": "REPLACE",
+	\ "Rv": "R-VIRTUAL",
+	\
+	\ "v": "VISUAL",
+	\ "V": "V-LINE",
+	\ "": "V-BLOCK",
+	\
+	\ "s": "SELECT",
+	\ "S": "S-LINE",
+	\ "": "S-BLOCK",
+	\
+	\ "c": "COMMAND",
+	\ "t": "TERMINAL",
+	\
+	\ "NERDTree": "NERD",
+	\ "Buffergator": "BUFFER",
+	\ "Plug": "Plug",
+\ }
+
+let s:brief_mode_map = {
+	\ "n": "N",
+	\
+	\ "i": "I",
+	\
+	\ "R": "R",
+	\ "Rv": "RV",
+	\
+	\ "v": "V",
+	\ "V": "VL",
+	\ "": "VB",
+	\
+	\ "s": "S",
+	\ "S": "SL",
+	\ "": "SB",
+	\
+	\ "c": "C",
+	\ "t": "T",
+	\
+	\ "NERDTree": "NR",
+	\ "Buffergator": "BF",
+	\ "Plug": "Plug",
+\ }
+
+function! StatusMode()
+	let l:default = "n"
+
+	let l:map = s:mode_map
+	if winwidth(0) < s:component_min_widths.full_mode
+		let l:map = s:brief_mode_map
+	endif
+
+	let l:mode = StatusGetSpecial()
+
+	let l:mode = l:mode == "" ? mode(1) : l:mode
+
+	if has_key(l:map, l:mode)
+		return l:map[l:mode]
+	endif
+
+	return l:map[l:default]
+endfunction
+
+" File
+function! StatusToDisplayFile()
+	return StatusGetSpecial() == ""
+endfunction
+
+function! StatusFile()
+	if !StatusToDisplayFile() || winwidth(0) < s:component_min_widths.file_name
+		return ""
+	elseif winwidth(0) >= s:component_min_widths.file_relativepath
+		return expand("%")
+	else
+		return expand("%:t")
+	endif
+endfunction
+
+" Flags
+function! StatusGetFlags()
+	let l:flags = [
+		\ &previewwindow ? "PRV" : "",
+		\ &buftype == "help" ? "HELP" : "",
+		\ &readonly ? "RO" : "",
+		\ !&modifiable ? "-" : "",
+		\ &modified ? "+" : "",
+	\]
+
+	return filter(l:flags, {i, value -> value != ""})
+endfunction
+
+function! StatusToDisplayFlags(flags)
+	return StatusGetSpecial() == "" && !empty(a:flags)
+endfunction
+
+function! StatusFlags()
+	let l:flags = StatusGetFlags()
+
+	if !StatusToDisplayFlags(l:flags) || winwidth(0) < s:component_min_widths.flags
+		return ""
+	endif
+
+	return join(map(l:flags, {i, value -> printf(g:fat_bracket_format, value)}), " ")
+endfunction
+
+" FileType
+function! StatusToDisplayFileType()
+	return StatusGetSpecial() == "" && &filetype != ""
+endfunction
+
+function! StatusFileType()
+	if !StatusToDisplayFileType() || winwidth(0) < s:component_min_widths.filetype
+		return ""
+	endif
+
+	return &filetype
+endfunction
+
+" FileData
+function! StatusToDisplayFileData()
+	if StatusGetSpecial() != "" ||
+		\ (&fileencoding == "" && &fileformat == "")
+		return 0
+	endif
+
+	return 1
+endfunction
+
+function! StatusFileData()
+	if !StatusToDisplayFileData() || winwidth(0) < s:component_min_widths.filedata
+		return ""
+	endif
+
+	let l:data = &fileencoding
+
+	let l:data .= &fileformat == "" ? "" : "[" . &fileformat . "]"
+
+	return l:data
+endfunction
+
+" Percent
+function! StatusToDisplayPercent()
+	return StatusGetSpecial() == ""
+endfunction
+
+function! StatusPercent()
+	if !StatusToDisplayPercent() || winwidth(0) < s:component_min_widths.percent
+		return ""
+	endif
+
+	let l:percent = ((line(".") * 1.0) / line("$")) * 100
+
+	return printf("%3d%%", float2nr(l:percent))
+endfunction
+
+" LineInfo
+function! StatusToDisplayLineInfo()
+	let l:special = StatusGetSpecial()
+	return l:special == "" || l:special == "Plug"
+endfunction
+
+function! StatusLineInfo()
+	let l:winwidth = winwidth(0)
+
+	if !StatusToDisplayLineInfo() || l:winwidth < s:component_min_widths.lineinfo
+		return ""
+	endif
+
+	let l:line = printf("%02d", line("."))
+	let l:col = printf("%02d", col("."))
+	let l:glyph = ""
+	let l:max_lines = ""
+
+	if l:winwidth >= s:component_min_widths.lineinfo_glyph
+		let l:glyph = "☰ "
+	endif
+
+	if l:winwidth >= s:component_min_widths.lineinfo_max_lines
+		let l:max_lines = printf("/%d", line("$"))
+	endif
+
+	return printf("%s[%s%s : %s]", l:glyph, l:line, l:max_lines, l:col)
+endfunction
+
+" NoScrollbar
+function! StatusToDisplayNoscrollbar()
+	return StatusGetSpecial() == ""
+endfunction
+
+function! StatusNoscrollbar()
+	if !StatusToDisplayNoscrollbar() || winwidth(0) < s:component_min_widths.noscrollbar
+		return ""
+	endif
+
+	return noscrollbar#statusline(20,'■','◫',['◧'],['◨'])
+endfunction
+
+" NERDTreeDir
+function! StatusNERDTreeDir()
+	if StatusGetSpecial() != "NERDTree" || winwidth(0) < s:component_min_widths.nerd_tree_dir
+		return ""
+	endif
+
+	return b:NERDTree.root.path.str()
+endfunction
+
+" Buffergator
+function! StatusBuffergator()
+    let l:line = line(".")
+
+	if StatusGetSpecial() != "Buffergator" ||
+		\ winwidth(0) < s:component_min_widths.buffergator ||
+		\ !has_key(b:buffergator_catalog_viewer.jump_map, l:line)
+		return ""
+	endif
+    " let l:status_line = "[[buffergator]]"
+
+	return "Buffer " . l:line . " of " . len(b:buffergator_catalog_viewer.buffers_catalog)
+
+	" return "test"
+    " if has_key(b:buffergator_catalog_viewer.jump_map, l:line)
+    " endif
+    " return l:status_line
+endfunction
+
+" Tabs
+function! TabsTabNum(tab)
+	return printf(g:fat_bracket_format, a:tab)
+endfunction
+
+function! TabsWinCount(tab)
+	let l:win_count = len(tabpagebuflist(a:tab))
+
+	if l:win_count < 2
+		return ""
+	endif
+
+	return printf("|%d|", l:win_count)
+endfunction

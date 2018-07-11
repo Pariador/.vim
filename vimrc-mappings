@@ -1,0 +1,154 @@
+"Disable mouse
+set mouse=
+
+"------NORMAL-OPERATOR-VISUAL------
+" Unmap
+nnoremap h <nop>
+xnoremap h <nop>
+onoremap h <nop>
+
+"Motions
+nnoremap j <left>
+nnoremap k <down>
+nnoremap l <up>
+nnoremap ; <right>
+
+onoremap j <left>
+onoremap k <down>
+onoremap l <up>
+onoremap ; <right>
+
+xnoremap j <left>
+xnoremap k <down>
+xnoremap l <up>
+xnoremap ; <right>
+
+nnoremap q b
+nnoremap Q B
+onoremap q b
+onoremap Q B
+xnoremap q b
+xnoremap Q B
+
+nnoremap , ;
+onoremap , ;
+xnoremap , ;
+
+nnoremap < ,
+onoremap < ,
+xnoremap < ,
+
+" Operators
+nnoremap S c<left>
+nnoremap Y y$
+
+nnoremap <tab> >
+onoremap <tab> >
+xnoremap <tab> >
+
+nnoremap <s-tab> <
+onoremap <s-tab> <
+xnoremap <s-tab> <
+
+" Marks
+nnoremap ' `
+onoremap ' `
+xnoremap ' `
+
+nnoremap " '
+onoremap ' `
+xnoremap ' `
+
+" Registers & Macros
+nnoremap b "
+xnoremap b "
+
+nnoremap B q
+xnoremap B q
+
+nnoremap > @
+xnoremap > @
+
+nnoremap >> @@
+xnoremap >> @@
+
+" Undo & Redo
+nnoremap U <c-r>
+nnoremap <a-u> U
+
+"Clear search highlights on CTRL-C
+noremap <silent> <c-c> <c-c> :noh<cr>
+
+"------INSERT------
+"Completion
+inoremap <a-k> <c-n>
+inoremap <a-l> <c-p>
+
+"Excute Normal Command
+inoremap <s-esc> <c-o>
+
+"------EX------
+nnoremap : <nop>
+onoremap : <nop>
+xnoremap : <nop>
+
+nnoremap ` :
+onoremap ` :
+xnoremap ` :
+
+nnoremap ~ Q
+
+nnoremap <a-`> gQ
+
+nnoremap g` q:
+xnoremap g` q:
+
+nnoremap g/ q/
+
+nnoremap g? q?
+
+"------WINDOW------
+" Unmap
+nnoremap <c-w>h <nop>
+nnoremap <c-w><a-h> <nop>
+nnoremap <c-w>H <nop>
+
+" Esc
+nnoremap <expr> <c-w><esc> '\<nop\>'
+
+nnoremap <c-w>j <c-w><left>
+nnoremap <c-w>k <c-w><down>
+nnoremap <c-w>l <c-w><up>
+nnoremap <c-w>; <c-w><right>
+
+nnoremap <c-w><a-j> <c-w>H
+nnoremap <c-w><a-k> <c-w>J
+nnoremap <c-w><a-l> <c-w>K
+nnoremap <c-w><a-;> <c-w>L
+
+" WindowSwap
+nnoremap <silent> <c-w>m :call WindowSwap#EasyWindowSwap()<cr>
+nmap <c-w>J <c-w>m<c-w>j<c-w>m
+nmap <c-w>K <c-w>m<c-w>k<c-w>m
+nmap <c-w>L <c-w>m<c-w>l<c-w>m
+nmap <c-w>: <c-w>m<c-w>;<c-w>m
+
+"------SPACE------
+" Esc
+nnoremap <expr> <space><esc> '\<nop\>'
+
+nnoremap <silent> <space>f :NERDTreeToggle<cr>
+nnoremap <silent> <space>b :BuffergatorToggle<cr>
+
+"------ESCAPE------
+" Esc
+nnoremap <expr> <esc><esc> '\<nop\>'
+
+"Toggle between relative and absolute line numvers.
+nnoremap <silent> <esc>n :NumbersToggle<cr>
+
+"Show highlight group.
+nnoremap <silent> <esc>h :so $VIMRUNTIME/syntax/hitest.vim<cr>
+
+"------LEADER------
+nnoremap <expr> <leader><esc> '\<nop\>'

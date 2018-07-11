@@ -1,0 +1,7 @@
+*.swp
+
+autoload/plug.vim
+plugged/
+
+viminfo
+nerdmarks

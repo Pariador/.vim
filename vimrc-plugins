@@ -1,0 +1,131 @@
+call plug#begin($MYRUNTIME . "/plugged")
+
+"------VIM-PLUGINS------
+" The NERDTree is a file system explorer for the Vim editor.
+Plug 'scrooloose/nerdtree'
+
+" Buffer list explored.
+Plug 'jeetsukumaran/vim-buffergator'
+
+" For moving buffers across windows.
+Plug 'wesq3/vim-windowswap'
+
+" Cool statusline.
+Plug 'itchyny/lightline.vim'
+
+" Statusline scrollbar display.
+Plug 'gcavallanti/vim-noscrollbar'
+
+" Snippets
+Plug 'marcweber/vim-addon-mw-utils' " Sniptmate dependency
+Plug 'tomtom/tlib_vim' " Sniptmate dependency
+Plug 'garbas/vim-snipmate'
+
+" ALE (Asynchronous Lint Engine)
+Plug 'w0rp/ale'
+
+" Comments
+Plug 'tpope/vim-commentary'
+
+" Insert or delete brackets, parens, quotes in pairs.
+Plug 'jiangmiao/auto-pairs'
+
+" Repeat plugin commands with '.'.
+Plug 'tpope/vim-repeat'
+
+" Move and duplicate text.
+Plug 'inkarkat/vim-ingo-library' "LineJuggler dependency
+Plug 'vim-scripts/LineJuggler'
+
+" Surround text-objects.
+Plug 'tpope/vim-surround'
+
+" Indent text-object.
+Plug 'michaeljsmith/vim-indent-object'
+
+" Custom and fold text objects.
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-fold'
+
+" For removing trailig whitespace.
+Plug 'ntpeters/vim-better-whitespace'
+
+" Indent guides for spaces.
+Plug 'Yggdroot/indentLine'
+
+" Sets relative number only for the file being navigated.
+Plug 'myusuf3/numbers.vim'
+
+" Emmet
+Plug 'mattn/emmet-vim'
+
+" Syntax
+Plug 'pangloss/vim-javascript'
+
+" Themes.
+Plug 'morhetz/gruvbox'
+Plug 'ajmwagar/vim-deus'
+Plug 'jdkanani/vim-material-theme'
+Plug 'tomasr/molokai'
+Plug 'arcticicestudio/nord-vim'
+
+"------GVIM-PLUGINS------
+if has("gui_running")
+	" For fullscreen support.
+	Plug 'zhmars/gvimtweak'
+endif
+
+call plug#end()
+
+"------LIGHTLINE------
+source $MYRUNTIME/vimrc-lightline
+
+"------DISABLE-NETRW------
+let g:loaded_netrw = 1
+let g:loaded_netrwPlugin = 1
+
+"------NERDTree------
+let g:NERDTreeBookmarksFile = expand($MYRUNTIME . "/nerdmarks")
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinSize = 40
+
+"------WINDOWSWAP------
+let g:windowswap_map_keys = 0
+
+"------INDENT-LINE------
+let g:indentLine_enabled = 0
+let g:indentLine_char = "|"
+if has("gui_running")
+	let g:indentLine_char = "┇"
+endif
+
+"------BETTER-WHITESPACE------
+let g:strip_whitespace_on_save = 1
+let g:strip_whitelines_at_eof = 1
+let g:show_spaces_that_precede_tabs = 1
+"let g:better_whitespace_filetypes_blacklist=['vim']
+highlight! link ExtraWhitespace Error
+
+"------SNIPMATE------
+let g:snipMate = {}
+let g:snipMate.snippet_version = 1
+
+"------BUFFERGATOR------
+let g:buffergator_autoexpand_on_split = 0
+let g:buffergator_suppress_keymaps = 1
+let g:buffergator_display_regime = "parentdir"
+let g:buffergator_window_statusline = 0
+let g:buffergator_tab_statusline = 0
+
+"------ALE------
+let g:ale_enabled = 0
+
+"------FOLD-TEXT-OBJECT------
+let g:textobj_fold_no_default_key_mappings = 1
+vmap af <Plug>(textobj-fold-a)
+omap af <Plug>(textobj-fold-a)
+
+"------EMMET------
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
