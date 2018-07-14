@@ -1,11 +1,47 @@
-"Disable mouse
+"------MOUSE------
 set mouse=
+
+"------GLOBAL------
+map <a-n> <cr>
+map! <a-n> <cr>
+tmap <a-n> <cr>
 
 "------NORMAL-OPERATOR-VISUAL------
 " Unmap
 nnoremap h <nop>
 xnoremap h <nop>
 onoremap h <nop>
+
+nnoremap <c-o> <nop>
+
+nnoremap <c-r> <nop>
+
+nnoremap <c-d> <nop>
+xnoremap <c-d> <nop>
+
+nnoremap <c-u> <nop>
+xnoremap <c-u> <nop>
+
+nnoremap <c-f> <nop>
+xnoremap <c-f> <nop>
+
+nnoremap <c-b> <nop>
+xnoremap <c-b> <nop>
+
+nnoremap <c-e> <nop>
+xnoremap <c-e> <nop>
+
+nnoremap <c-y> <nop>
+xnoremap <c-y> <nop>
+
+nnoremap <c-end> <nop>
+xnoremap <c-end> <nop>
+
+nnoremap <c-home> <nop>
+xnoremap <c-home> <nop>
+
+nnoremap zt <nop>
+xnoremap zb <nop>
 
 "Motions
 nnoremap j <left>
@@ -30,6 +66,13 @@ onoremap Q B
 xnoremap q b
 xnoremap Q B
 
+nnoremap <a-e> ge
+nnoremap <a-E> gE
+onoremap <a-e> ge
+onoremap <a-E> gE
+xnoremap <a-e> ge
+xnoremap <a-E> gE
+
 nnoremap , ;
 onoremap , ;
 xnoremap , ;
@@ -40,7 +83,13 @@ xnoremap < ,
 
 " Operators
 nnoremap S c<left>
+
 nnoremap Y y$
+nnoremap <a-y> y^
+
+nnoremap <a-d> d^
+
+nnoremap <a-c> c^
 
 nnoremap <tab> >
 onoremap <tab> >
@@ -56,8 +105,8 @@ onoremap ' `
 xnoremap ' `
 
 nnoremap " '
-onoremap ' `
-xnoremap ' `
+onoremap " '
+xnoremap " '
 
 " Registers & Macros
 nnoremap b "
@@ -75,6 +124,72 @@ xnoremap >> @@
 " Undo & Redo
 nnoremap U <c-r>
 nnoremap <a-u> U
+
+" Scrolling
+nnoremap K <c-d>
+xnoremap K <c-d>
+
+nnoremap L <c-u>
+xnoremap L <c-u>
+
+nnoremap <a-k> <c-f>
+xnoremap <a-k> <c-f>
+
+nnoremap <a-l> <c-b>
+xnoremap <a-l> <c-b>
+
+nnoremap zk zb
+xnoremap zk zb
+
+nnoremap zl zt
+xnoremap zl zt
+
+nnoremap <c-k> <c-e>
+xnoremap <c-k> <c-e>
+
+nnoremap <c-l> <c-y>
+xnoremap <c-l> <c-y>
+
+nnoremap <down> <c-d>
+xnoremap <down> <c-d>
+
+nnoremap <up> <c-u>
+xnoremap <up> <c-u>
+
+nnoremap <end> <c-e>
+xnoremap <end> <c-e>
+
+nnoremap <home> <c-y>
+xnoremap <home> <c-y>
+
+nnoremap <s-end> G
+xnoremap <s-end> G
+
+nnoremap <s-home> gg
+xnoremap <s-home> gg
+
+" Jump list
+nnoremap <a-o> <c-o>
+nnoremap <a-i> <c-i>
+
+" Clipboard
+nnoremap gd "+d
+xnoremap gd "+d
+
+nnoremap gD "+D
+nnoremap g<a-d> "+d^
+
+nnoremap gy "+y
+xnoremap gy "+y
+
+nnoremap gY "+y$
+nnoremap g<a-y> "+y^
+
+nnoremap gp "+p
+xnoremap gp "+p
+
+nnoremap gP "+P
+xnoremap gP "+P
 
 "Clear search highlights on CTRL-C
 noremap <silent> <c-c> <c-c> :noh<cr>
@@ -139,6 +254,10 @@ nnoremap <expr> <space><esc> '\<nop\>'
 
 nnoremap <silent> <space>f :NERDTreeToggle<cr>
 nnoremap <silent> <space>b :BuffergatorToggle<cr>
+
+" Change list
+nnoremap <space>o g;
+nnoremap <space>i g,
 
 "------ESCAPE------
 " Esc

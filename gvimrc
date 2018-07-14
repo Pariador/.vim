@@ -1,16 +1,39 @@
 "GVIM-PLUGINS are loaded and configured from plugins.vimrc
 
 "------GVIM-MAPPINGS------
+set mouse =a
+set mousemodel =extend
+
+map <2-RightMouse> <nop>
+map <3-RightMouse> <nop>
+map <4-RightMouse> <nop>
+
+map <MiddleMouse> <nop>
+map <2-MiddleMouse> <nop>
+map <3-MiddleMouse> <nop>
+map <4-MiddleMouse> <nop>
+
+function! ToggleVisualKey()
+	let l:mode = mode()
+	echo l:mode
+	if l:mode == 'v'
+		return 'V'
+	elseif l:mode == 'V'
+		return "\<c-v>"
+	elseif l:mode == "\<c-v>"
+		return 'v'
+	else
+		return '\<nop\>'
+	endif
+endfunction
+
+nnoremap <MiddleMouse> V
+xnoremap <expr> <MiddleMouse> ToggleVisualKey()
+
 noremap <silent> <F11> :GvimTweakToggleFullScreen<CR>
 
 "------DISPLAY-SETTINGS------
-set guioptions -=m  "remove menu bar
-set guioptions -=T  "remove toolbar
-set guioptions -=r  "remove right-hand scroll bar
-set guioptions -=L  "remove left-hand scroll bar
-set guioptions -=e  "remove gui tab pages
-set guioptions +=c  "use terminal style dialogs
-set guioptions +=!  "use the vim command-line to execute ! commands
+set guioptions =c!
 
 " Window position and size.
 winpos 264 83

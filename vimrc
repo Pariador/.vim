@@ -20,8 +20,10 @@ syntax on
 filetype plugin indent on " Enables filetype detection, filetype indenting, and filetype plugins.
 
 " Indentation
-set tabstop=4
-set shiftwidth=4
+"source $MYRUNTIME/vimrc-tabs
+set tabstop =4
+set shiftwidth =0
+set expandtab
 set autoindent " See also smartindent, cindent and indentexpr.
 
 " Folding
@@ -54,6 +56,10 @@ set incsearch
 
 set belloff =all " Silence Error Beeps.
 " set showmatch " Move cursor to show matching brace while inserting.
+
+" Mark width limit
+" highlight clear OverTextWidth
+" autocmd VimEnter,WinNew * call matchadd('OverTextWidth', '\%81v.\+', -10)
 
 " Windows
 set splitright
@@ -92,28 +98,3 @@ source $MYRUNTIME/vimrc-plugins
 
 "------VIM-MAPPINGS------
 source $MYRUNTIME/vimrc-mappings
-
-"------STUFF------
-"function! Report(...)
-"	let l:data = mode(1)
-"	call append(0, l:data)
-"endfunction
-"function! StartReport()
-"	call timer_start(1000, "Report", {"repeat": -1})
-"endfunction
-"------BUFFERLINE------
-"let g:airline#extensions#bufferline#enabled = 0
-"let g:airline#extensions#bufferline#overwrite_variables=1
-"let g:bufferline_echo = 1
-"let g:bufferline_active_buffer_left = '['
-"let g:bufferline_active_buffer_right = ']'
-"let g:bufferline_modified = '[+]'
-"let g:bufferline_show_bufnr = 1
-"let g:bufferline_rotate = 0
-
-"let g:bufferline_solo_highlight = 0
-
-"  let g:bufferline_echo = 0
-"  autocmd VimEnter *
-"    \ let &statusline='%{bufferline#refresh_status()}'
-"      \ .bufferline#get_status_string()

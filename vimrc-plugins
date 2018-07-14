@@ -28,7 +28,7 @@ Plug 'w0rp/ale'
 Plug 'tpope/vim-commentary'
 
 " Insert or delete brackets, parens, quotes in pairs.
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
 
 " Repeat plugin commands with '.'.
 Plug 'tpope/vim-repeat'
@@ -48,7 +48,7 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-fold'
 
 " For removing trailig whitespace.
-Plug 'ntpeters/vim-better-whitespace'
+" Plug 'ntpeters/vim-better-whitespace'
 
 " Indent guides for spaces.
 Plug 'Yggdroot/indentLine'
