@@ -1,2 +1,3 @@
-TextWidthMarkerSet 40
-"call TextWidthMarkerSet(40)
+setlocal textwidth =80
+setlocal foldmethod =syntax
+IndentLinesEnable

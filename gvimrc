@@ -1,4 +1,4 @@
-"GVIM-PLUGINS are loaded and configured from plugins.vimrc
+" GVIM-PLUGINS are loaded and configured from vimrc-plugins
 
 "------GVIM-MAPPINGS------
 set mouse =a
@@ -14,17 +14,17 @@ map <3-MiddleMouse> <nop>
 map <4-MiddleMouse> <nop>
 
 function! ToggleVisualKey()
-	let l:mode = mode()
-	echo l:mode
-	if l:mode == 'v'
-		return 'V'
-	elseif l:mode == 'V'
-		return "\<c-v>"
-	elseif l:mode == "\<c-v>"
-		return 'v'
-	else
-		return '\<nop\>'
-	endif
+    let l:mode = mode()
+
+    if l:mode == 'v'
+        return 'V'
+    elseif l:mode == 'V'
+        return "\<c-v>"
+    elseif l:mode == "\<c-v>"
+        return 'v'
+    else
+        return '\<nop\>'
+    endif
 endfunction
 
 nnoremap <MiddleMouse> V
@@ -45,5 +45,5 @@ set winaltkeys =no "No alt keys for gui menus
 set guifont =Hack:h9
 colorscheme molokai_mod
 
-"Set indent guides
-let &listchars = "tab:┇\ " "For tabs
+" Set indent guides
+let &listchars = 'tab:┇\ ' "For tabs

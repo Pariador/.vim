@@ -47,8 +47,11 @@ Plug 'michaeljsmith/vim-indent-object'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-fold'
 
-" For removing trailig whitespace.
-" Plug 'ntpeters/vim-better-whitespace'
+" Highlight text over textwidth.
+Plug 'whatyouhide/vim-lengthmatters'
+
+" For highlighting and removing trailig whitespace.
+Plug 'ntpeters/vim-better-whitespace'
 
 " Indent guides for spaces.
 Plug 'Yggdroot/indentLine'
@@ -71,18 +74,22 @@ Plug 'arcticicestudio/nord-vim'
 
 "------GVIM-PLUGINS------
 if has("gui_running")
-	" For fullscreen support.
-	Plug 'zhmars/gvimtweak'
+    " For fullscreen support.
+    Plug 'zhmars/gvimtweak'
 endif
 
 call plug#end()
 
-"------LIGHTLINE------
-source $MYRUNTIME/vimrc-lightline
-
 "------DISABLE-NETRW------
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
+
+"------BUFFERGATOR------
+let g:buffergator_autoexpand_on_split = 0
+let g:buffergator_suppress_keymaps = 1
+let g:buffergator_display_regime = "parentdir"
+let g:buffergator_window_statusline = 0
+let g:buffergator_tab_statusline = 0
 
 "------NERDTree------
 let g:NERDTreeBookmarksFile = expand($MYRUNTIME . "/nerdmarks")
@@ -93,12 +100,30 @@ let g:NERDTreeWinSize = 40
 "------WINDOWSWAP------
 let g:windowswap_map_keys = 0
 
-"------INDENT-LINE------
-let g:indentLine_enabled = 0
-let g:indentLine_char = "|"
-if has("gui_running")
-	let g:indentLine_char = "┇"
-endif
+"------LIGHTLINE------
+source $MYRUNTIME/vimrc-lightline
+
+"------SNIPMATE------
+let g:snipMate = {}
+let g:snipMate.snippet_version = 1
+
+"------ALE------
+let g:ale_enabled = 0
+
+"------FOLD-TEXT-OBJECT------
+let g:textobj_fold_no_default_key_mappings = 1
+xmap af <Plug>(textobj-fold-a)
+omap af <Plug>(textobj-fold-a)
+
+"------LengthMatters------
+call lengthmatters#highlight('guibg=#000000')
+let g:lengthmatters_excluded = [
+    \ '',
+    \ 'text',
+    \ 'html',
+    \ 'nerdtree',
+    \ 'help',
+\ ]
 
 "------BETTER-WHITESPACE------
 let g:strip_whitespace_on_save = 1
@@ -107,24 +132,15 @@ let g:show_spaces_that_precede_tabs = 1
 "let g:better_whitespace_filetypes_blacklist=['vim']
 highlight! link ExtraWhitespace Error
 
-"------SNIPMATE------
-let g:snipMate = {}
-let g:snipMate.snippet_version = 1
-
-"------BUFFERGATOR------
-let g:buffergator_autoexpand_on_split = 0
-let g:buffergator_suppress_keymaps = 1
-let g:buffergator_display_regime = "parentdir"
-let g:buffergator_window_statusline = 0
-let g:buffergator_tab_statusline = 0
-
-"------ALE------
-let g:ale_enabled = 0
-
-"------FOLD-TEXT-OBJECT------
-let g:textobj_fold_no_default_key_mappings = 1
-vmap af <Plug>(textobj-fold-a)
-omap af <Plug>(textobj-fold-a)
+"------INDENT-LINE------
+let g:indentLine_enabled = 0
+let g:indentLine_showFirstIndentLevel = 1
+let g:indentLine_first_char = "|"
+let g:indentLine_char = "|"
+if has("gui_running")
+    let g:indentLine_first_char = "┇"
+    let g:indentLine_char = "┇"
+endif
 
 "------EMMET------
 let g:user_emmet_install_global = 0

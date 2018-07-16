@@ -121,6 +121,9 @@ xnoremap > @
 nnoremap >> @@
 xnoremap >> @@
 
+nnoremap >` @:
+xnoremap >` @:
+
 " Undo & Redo
 nnoremap U <c-r>
 nnoremap <a-u> U
@@ -207,7 +210,7 @@ nnoremap : <nop>
 onoremap : <nop>
 xnoremap : <nop>
 
-nnoremap ` :
+nnoremap <expr> ` v:count == 0 ? ':' : ':<c-u>.,.+' . v:count
 onoremap ` :
 xnoremap ` :
 
