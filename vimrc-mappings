@@ -1,16 +1,18 @@
 "------MOUSE------
 set mouse=
 
-"------GLOBAL------
-map <a-n> <cr>
-map! <a-n> <cr>
-tmap <a-n> <cr>
-
-"------NORMAL-OPERATOR-VISUAL------
-" Unmap
+"------UNMAPS------
 nnoremap h <nop>
 xnoremap h <nop>
 onoremap h <nop>
+
+nnoremap : <nop>
+onoremap : <nop>
+xnoremap : <nop>
+
+nnoremap - <nop>
+xnoremap - <nop>
+onoremap - <nop>
 
 nnoremap <c-o> <nop>
 
@@ -40,23 +42,33 @@ xnoremap <c-end> <nop>
 nnoremap <c-home> <nop>
 xnoremap <c-home> <nop>
 
+nnoremap zz <nop>
+xnoremap zz <nop>
+
 nnoremap zt <nop>
+xnoremap zt <nop>
+
+nnoremap zb <nop>
 xnoremap zb <nop>
 
-"Motions
+nnoremap @ <nop>
+xnoremap @ <nop>
+
+"------NORMAL-OPERATOR-VISUAL------
+" Motions
 nnoremap j <left>
-nnoremap k <down>
-nnoremap l <up>
+nnoremap k <up>
+nnoremap l <down>
 nnoremap ; <right>
 
 onoremap j <left>
-onoremap k <down>
-onoremap l <up>
+onoremap k <up>
+onoremap l <down>
 onoremap ; <right>
 
 xnoremap j <left>
-xnoremap k <down>
-xnoremap l <up>
+xnoremap k <up>
+xnoremap l <down>
 xnoremap ; <right>
 
 nnoremap q b
@@ -81,12 +93,15 @@ nnoremap < ,
 onoremap < ,
 xnoremap < ,
 
+nnoremap 0 ^
+onoremap 0 ^
+xnoremap 0 ^
+
+nnoremap ^ 0
+onoremap ^ 0
+xnoremap ^ 0
+
 " Operators
-nnoremap S c<left>
-
-nnoremap Y y$
-nnoremap <a-y> y^
-
 nnoremap <a-d> d^
 
 nnoremap <a-c> c^
@@ -99,7 +114,108 @@ nnoremap <s-tab> <
 onoremap <s-tab> <
 xnoremap <s-tab> <
 
+nnoremap @ =
+onoremap @ =
+xnoremap @ =
+
+nnoremap <silent> <expr> <a-x>
+    \ printf('<esc><right>%sx<left>', v:count ? v:count : '')
+
+nnoremap S c<left>
+
+nnoremap <silent> <expr> <a-s>
+    \ printf('<esc><right>%ss', v:count ? v:count : '')
+
+nnoremap Y y$
+nnoremap <a-y> y^
+
+" Scrolling
+nnoremap K <c-u>
+xnoremap K <c-u>
+
+nnoremap L <c-d>
+xnoremap L <c-d>
+
+nnoremap <a-k> <c-b>
+xnoremap <a-k> <c-b>
+
+nnoremap <a-l> <c-f>
+xnoremap <a-l> <c-f>
+
+nnoremap <space><space> zz
+xnoremap <space><space> zz
+
+nnoremap <space>k zt
+xnoremap <space>k zt
+
+nnoremap <space>l zb
+xnoremap <space>l zb
+
+nnoremap <up> <c-u>
+xnoremap <up> <c-u>
+
+nnoremap <down> <c-d>
+xnoremap <down> <c-d>
+
+nnoremap <home> <c-y>
+xnoremap <home> <c-y>
+
+nnoremap <end> <c-e>
+xnoremap <end> <c-e>
+
+nnoremap <s-home> gg
+xnoremap <s-home> gg
+
+nnoremap <s-end> G
+xnoremap <s-end> G
+
+" Jumps
+nnoremap <c-k> <c-o>
+nnoremap <c-l> <c-i>
+
+" Changes
+nnoremap <a-[> g;
+nnoremap <a-]> g,
+
+" Buffers
+nnoremap <silent> <expr> J
+    \ printf(':<c-u>%s bprevious<cr>', v:count ? v:count : '')
+nnoremap <silent> <expr> :
+    \ printf(':<c-u>%s bnext<cr>', v:count ? v:count : '')
+
+" Args
+nnoremap <silent> <expr> <a-j>
+    \ printf(':<c-u>%s previous<cr>', v:count ? v:count : '')
+nnoremap <silent> <expr> <a-;>
+    \ printf(':<c-u>%s next<cr>', v:count ? v:count : '')
+
+" quickfix lists
+nnoremap <silent> <expr> -
+    \ printf(':<c-u>%s cprevious<cr>', v:count ? v:count : '')
+nnoremap <silent> <expr> =
+    \ printf(':<c-u>%s cnext<cr>', v:count ? v:count : '')
+
+nnoremap <silent> <expr> <a-->
+    \ printf(':<c-u>colder %s<cr>', v:count ? v:count : '')
+nnoremap <silent> <expr> <a-=>
+    \ printf(':<c-u>cnewer %s<cr>', v:count ? v:count : '')
+
+" location lists
+nnoremap <silent> <expr> _
+    \ printf(':<c-u>%s lprevious<cr>', v:count ? v:count : '')
+nnoremap <silent> <expr> +
+    \ printf(':<c-u>%s lnext<cr>', v:count ? v:count : '')
+
+nnoremap <silent> <expr> <a-_>
+    \ printf(':<c-u>lolder %s<cr>', v:count ? v:count : '')
+nnoremap <silent> <expr> <a-+>
+    \ printf(':<c-u>lnewer %s<cr>', v:count ? v:count : '')
+
 " Marks
+nnoremap <a-'> m
+onoremap <a-'> m
+xnoremap <a-'> m
+
 nnoremap ' `
 onoremap ' `
 xnoremap ' `
@@ -126,54 +242,54 @@ xnoremap >` @:
 
 " Undo & Redo
 nnoremap U <c-r>
-nnoremap <a-u> U
 
-" Scrolling
-nnoremap K <c-d>
-xnoremap K <c-d>
+nnoremap <a-u> g-
+nnoremap <a-U> g+
 
-nnoremap L <c-u>
-xnoremap L <c-u>
+nnoremap <c-u> U
 
-nnoremap <a-k> <c-f>
-xnoremap <a-k> <c-f>
+" open line
+function s:AddBlanks(direction, mode)
+    if a:mode == 'n'
+        let l:line = line('.') - 1 + a:direction
+    elseif a:mode == 'v'
+        let l:line = a:direction ? line("'>") : line("'<") - 1
+    endif
 
-nnoremap <a-l> <c-b>
-xnoremap <a-l> <c-b>
+    let l:blanks = repeat([''], v:count ? v:count : 1)
 
-nnoremap zk zb
-xnoremap zk zb
+    call append(l:line, l:blanks)
+endfunction
 
-nnoremap zl zt
-xnoremap zl zt
+nnoremap <silent> [o :<c-u>call <sid>AddBlanks(0, 'n')<cr>
+nnoremap <silent> ]o :<c-u>call <sid>AddBlanks(1, 'n')<cr>
 
-nnoremap <c-k> <c-e>
-xnoremap <c-k> <c-e>
+xnoremap <silent> [o :<c-u>call <sid>AddBlanks(0, 'v')<cr>gv
+xnoremap <silent> ]o :<c-u>call <sid>AddBlanks(1, 'v')<cr>gv
 
-nnoremap <c-l> <c-y>
-xnoremap <c-l> <c-y>
+nmap <a-O> [o
+nmap <a-o> ]o
 
-nnoremap <down> <c-d>
-xnoremap <down> <c-d>
+" move
+nnoremap <silent> <expr> M
+    \ printf(':<c-u>move .-%s<cr>', v:count < 2 ? 2 : v:count + 1)
+nnoremap <silent> <expr> m
+    \ printf(':<c-u>move .+%s<cr>', v:count ? v:count : 1)
 
-nnoremap <up> <c-u>
-xnoremap <up> <c-u>
+xnoremap <silent> <expr> M
+    \ printf("<esc>:'<,'>move %s<cr>%s", v:count ? '.-' . (v:count + 1) : "'<-2", v:count ? '' : 'gv')
+xnoremap <silent> <expr> m
+    \ printf("<esc>:'<,'>move %s<cr>%s", v:count ? '.+' . v:count : "'>+1", v:count ? '' : 'gv')
 
-nnoremap <end> <c-e>
-xnoremap <end> <c-e>
+" xnoremap <silent> [o :call append(line("'<") - 1, '')<cr>
+" xnoremap <silent> ]o :call append(line("'>"), '')<cr>
 
-nnoremap <home> <c-y>
-xnoremap <home> <c-y>
+" haul (duplicate)
+" nmap H <Plug>(LineJugglerDupRangeUp)
+" nmap h <Plug>(LineJugglerDupRangeDown)
 
-nnoremap <s-end> G
-xnoremap <s-end> G
-
-nnoremap <s-home> gg
-xnoremap <s-home> gg
-
-" Jump list
-nnoremap <a-o> <c-o>
-nnoremap <a-i> <c-i>
+" xmap H <Plug>(LineJugglerDupRangeUp)
+" xmap h <Plug>(LineJugglerDupRangeDown)
 
 " Clipboard
 nnoremap gd "+d
@@ -194,25 +310,27 @@ xnoremap gp "+p
 nnoremap gP "+P
 xnoremap gP "+P
 
-"Clear search highlights on CTRL-C
-noremap <silent> <c-c> <c-c> :noh<cr>
+" ToggleRelativeNumbers
+nnoremap <silent> <space>1 :NumbersToggle<cr>
+
+"Clear search highlights on CTRL-C.
+noremap <silent> <c-c> <c-c>:noh<cr>
 
 "------INSERT------
 "Completion
-inoremap <a-k> <c-n>
-inoremap <a-l> <c-p>
+inoremap <a-k> <c-p>
+inoremap <a-l> <c-n>
 
-"Excute Normal Command
+"Excute normal command.
 inoremap <s-esc> <c-o>
 
 "------EX------
-nnoremap : <nop>
-onoremap : <nop>
-xnoremap : <nop>
-
-nnoremap <expr> ` v:count == 0 ? ':' : ':<c-u>.,.+' . v:count
+nnoremap <expr> ` v:count ? printf(':<c-u>.,.+%d', v:count) : ':'
 onoremap ` :
 xnoremap ` :
+
+nmap ]` `
+nnoremap <expr> [` v:count ? printf(':<c-u>.-%d,.', v:count) : ':'
 
 nnoremap ~ Q
 
@@ -225,6 +343,12 @@ nnoremap g/ q/
 
 nnoremap g? q?
 
+nmap <expr> <space>` '`norm '
+nmap <expr> <space>]` ']`norm '
+nmap <expr> <space>[` '[`norm '
+
+cabbrev te tabedit
+
 "------WINDOW------
 " Unmap
 nnoremap <c-w>h <nop>
@@ -235,13 +359,13 @@ nnoremap <c-w>H <nop>
 nnoremap <expr> <c-w><esc> '\<nop\>'
 
 nnoremap <c-w>j <c-w><left>
-nnoremap <c-w>k <c-w><down>
-nnoremap <c-w>l <c-w><up>
+nnoremap <c-w>k <c-w><up>
+nnoremap <c-w>l <c-w><down>
 nnoremap <c-w>; <c-w><right>
 
 nnoremap <c-w><a-j> <c-w>H
-nnoremap <c-w><a-k> <c-w>J
-nnoremap <c-w><a-l> <c-w>K
+nnoremap <c-w><a-k> <c-w>K
+nnoremap <c-w><a-l> <c-w>J
 nnoremap <c-w><a-;> <c-w>L
 
 " WindowSwap
@@ -258,19 +382,15 @@ nnoremap <expr> <space><esc> '\<nop\>'
 nnoremap <silent> <space>f :NERDTreeToggle<cr>
 nnoremap <silent> <space>b :BuffergatorToggle<cr>
 
-" Change list
-nnoremap <space>o g;
-nnoremap <space>i g,
+""------ESCAPE------
+"" Esc
+"nnoremap <expr> <esc><esc> '\<nop\>'
 
-"------ESCAPE------
-" Esc
-nnoremap <expr> <esc><esc> '\<nop\>'
+""Toggle between relative and absolute line numvers.
+"nnoremap <silent> <esc>n :NumbersToggle<cr>
 
-"Toggle between relative and absolute line numvers.
-nnoremap <silent> <esc>n :NumbersToggle<cr>
-
-"Show highlight group.
-nnoremap <silent> <esc>h :so $VIMRUNTIME/syntax/hitest.vim<cr>
+""Show highlight group.
+"nnoremap <silent> <esc>h :so $VIMRUNTIME/syntax/hitest.vim<cr>
 
 "------LEADER------
 nnoremap <expr> <leader><esc> '\<nop\>'

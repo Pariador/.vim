@@ -14,6 +14,7 @@ let g:fat_bracket_format = g:open_fat_bracket . '%s' . g:close_fat_bracket
 
 "------SETTINGS------
 set encoding =utf-8 " Vim internal encoding.
+set fileformats =dos,unix,mac
 set nocompatible " Vi compatibility
 set notimeout " Unfinished mappings don't timeout.
 syntax on
@@ -22,7 +23,6 @@ syntax on
 filetype plugin indent on
 
 " Indentation
-"source $MYRUNTIME/vimrc-tabs
 set tabstop =4
 set shiftwidth =0
 set expandtab
@@ -31,6 +31,7 @@ set autoindent " See also smartindent, cindent and indentexpr.
 " Folding
 set foldlevelstart =99 " Open all folds when opening a file.
 
+set hidden
 let &path = '.,,./**5,**5' " Directories for searching files with :find.
 set backspace =indent " Allows you to backspace auto indent.
 
@@ -56,6 +57,8 @@ let &listchars = 'tab:|\ '
 " Search highlighting.
 set hlsearch
 set incsearch
+
+set lazyredraw " Don't redraw screen while executing macros.
 
 set belloff =all " Silence Error Beeps.
 " set showmatch " Move cursor to show matching brace while inserting.

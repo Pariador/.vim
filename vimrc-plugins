@@ -32,10 +32,12 @@ Plug 'tpope/vim-commentary'
 
 " Repeat plugin commands with '.'.
 Plug 'tpope/vim-repeat'
+Plug 'vim-scripts/visualrepeat'
 
 " Move and duplicate text.
-Plug 'inkarkat/vim-ingo-library' "LineJuggler dependency
-Plug 'vim-scripts/LineJuggler'
+" Plug 'inkarkat/vim-ingo-library' "LineJuggler dependency
+" Plug 'vim-scripts/LineJugglerCommands'
+" Plug 'vim-scripts/LineJuggler'
 
 " Surround text-objects.
 Plug 'tpope/vim-surround'
@@ -94,6 +96,7 @@ let g:buffergator_tab_statusline = 0
 "------NERDTree------
 let g:NERDTreeBookmarksFile = expand($MYRUNTIME . "/nerdmarks")
 let g:NERDTreeQuitOnOpen = 1
+" let g:NERDTreeShowLineNumbers = 1
 let g:NERDTreeWinPos = "right"
 let g:NERDTreeWinSize = 40
 
