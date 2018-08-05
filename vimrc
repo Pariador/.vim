@@ -33,7 +33,7 @@ set foldlevelstart =99 " Open all folds when opening a file.
 
 set hidden
 let &path = '.,,./**5,**5' " Directories for searching files with :find.
-set backspace =indent " Allows you to backspace auto indent.
+set backspace =2 " Allows you to backspace auto indent.
 
 " By default vim sees numbers with leading zeroes '003' as base 8,
 " this makes it use decimal.
@@ -67,11 +67,10 @@ set belloff =all " Silence Error Beeps.
 set splitright
 set splitbelow
 
-" Setup Status Line.
-
 " Redraw the status line after entering command-line mode.
 autocmd CmdlineEnter * redrawstatus
 
+" Setup Status Line.
 set laststatus =2 " Make Status Line always visible.
 let &statusline = '%f' " File Path.
 let &statusline .= '     ' " Padding.

@@ -54,8 +54,7 @@ xnoremap zb <nop>
 nnoremap @ <nop>
 xnoremap @ <nop>
 
-"------NORMAL-OPERATOR-VISUAL------
-" Motions
+"------MOTIONS------
 nnoremap j <left>
 nnoremap k <up>
 nnoremap l <down>
@@ -78,13 +77,6 @@ onoremap Q B
 xnoremap q b
 xnoremap Q B
 
-nnoremap <a-e> ge
-nnoremap <a-E> gE
-onoremap <a-e> ge
-onoremap <a-E> gE
-xnoremap <a-e> ge
-xnoremap <a-E> gE
-
 nnoremap , ;
 onoremap , ;
 xnoremap , ;
@@ -101,11 +93,43 @@ nnoremap ^ 0
 onoremap ^ 0
 xnoremap ^ 0
 
-" Operators
+"------OPERATORS------
+" delete
 nnoremap <a-d> d^
 
+nnoremap <silent> <expr> <a-x>
+    \ printf('<esc><right>%sx<left>', v:count ? v:count : '')
+
+" change
 nnoremap <a-c> c^
 
+nnoremap S c<left>
+nnoremap <silent> <expr> <a-s>
+    \ printf('<esc><right>%ss', v:count ? v:count : '')
+
+" yank
+nnoremap Y y$
+nnoremap <a-y> y^
+
+" move
+nmap M <plug>MoveUpOperatorLine
+nmap [m <plug>MoveUpOperator
+nmap [mm <plug>MoveUpOperatorLine
+nmap [m[m <plug>MoveUpOperatorLine
+xmap M <plug>MoveUpOperator
+
+nmap m <plug>MoveDownOperatorLine
+nmap ]m <plug>MoveDownOperator
+nmap ]mm <plug>MoveDownOperatorLine
+nmap ]m]m <plug>MoveDownOperatorLine
+xmap m <plug>MoveDownOperator
+
+" duplicate
+nmap h <plug>DuplicateOperator
+nmap hh <plug>DuplicateOperatorLine
+xmap h <plug>DuplicateOperator
+
+" indent
 nnoremap <tab> >
 onoremap <tab> >
 xnoremap <tab> >
@@ -113,23 +137,15 @@ xnoremap <tab> >
 nnoremap <s-tab> <
 onoremap <s-tab> <
 xnoremap <s-tab> <
+nnoremap <s-tab><tab> <<
+xnoremap <s-tab><tab> <<
 
+" format
 nnoremap @ =
 onoremap @ =
 xnoremap @ =
 
-nnoremap <silent> <expr> <a-x>
-    \ printf('<esc><right>%sx<left>', v:count ? v:count : '')
-
-nnoremap S c<left>
-
-nnoremap <silent> <expr> <a-s>
-    \ printf('<esc><right>%ss', v:count ? v:count : '')
-
-nnoremap Y y$
-nnoremap <a-y> y^
-
-" Scrolling
+"------SCROLLING------
 nnoremap K <c-u>
 xnoremap K <c-u>
 
@@ -169,49 +185,49 @@ xnoremap <s-home> gg
 nnoremap <s-end> G
 xnoremap <s-end> G
 
-" Jumps
+"------JUMPS------
 nnoremap <c-k> <c-o>
 nnoremap <c-l> <c-i>
 
-" Changes
+"------CHANGES------
 nnoremap <a-[> g;
 nnoremap <a-]> g,
 
-" Buffers
+"------BUFFERS------
 nnoremap <silent> <expr> J
     \ printf(':<c-u>%s bprevious<cr>', v:count ? v:count : '')
 nnoremap <silent> <expr> :
     \ printf(':<c-u>%s bnext<cr>', v:count ? v:count : '')
 
-" Args
+"------ARGS------
 nnoremap <silent> <expr> <a-j>
     \ printf(':<c-u>%s previous<cr>', v:count ? v:count : '')
 nnoremap <silent> <expr> <a-;>
     \ printf(':<c-u>%s next<cr>', v:count ? v:count : '')
 
-" quickfix lists
+"------QUICKFIX-LISTS------
 nnoremap <silent> <expr> -
     \ printf(':<c-u>%s cprevious<cr>', v:count ? v:count : '')
 nnoremap <silent> <expr> =
     \ printf(':<c-u>%s cnext<cr>', v:count ? v:count : '')
 
-nnoremap <silent> <expr> <a-->
+nnoremap <silent> <expr> <f9>
     \ printf(':<c-u>colder %s<cr>', v:count ? v:count : '')
-nnoremap <silent> <expr> <a-=>
+nnoremap <silent> <expr> <f10>
     \ printf(':<c-u>cnewer %s<cr>', v:count ? v:count : '')
 
-" location lists
+"------LOCATION-LISTS------
 nnoremap <silent> <expr> _
     \ printf(':<c-u>%s lprevious<cr>', v:count ? v:count : '')
 nnoremap <silent> <expr> +
     \ printf(':<c-u>%s lnext<cr>', v:count ? v:count : '')
 
-nnoremap <silent> <expr> <a-_>
+nnoremap <silent> <expr> <s-f9>
     \ printf(':<c-u>lolder %s<cr>', v:count ? v:count : '')
-nnoremap <silent> <expr> <a-+>
+nnoremap <silent> <expr> <s-f10>
     \ printf(':<c-u>lnewer %s<cr>', v:count ? v:count : '')
 
-" Marks
+"------MARKS------
 nnoremap <a-'> m
 onoremap <a-'> m
 xnoremap <a-'> m
@@ -224,7 +240,7 @@ nnoremap " '
 onoremap " '
 xnoremap " '
 
-" Registers & Macros
+"------REGISTERS-AND-MACROS------
 nnoremap b "
 xnoremap b "
 
@@ -240,58 +256,22 @@ xnoremap >> @@
 nnoremap >` @:
 xnoremap >` @:
 
-" Undo & Redo
+"------UNDO-REDO------
 nnoremap U <c-r>
 
-nnoremap <a-u> g-
-nnoremap <a-U> g+
+nnoremap <a-u> U
 
-nnoremap <c-u> U
+nnoremap <f1> g-
+nnoremap <f2> g+
 
-" open line
-function s:AddBlanks(direction, mode)
-    if a:mode == 'n'
-        let l:line = line('.') - 1 + a:direction
-    elseif a:mode == 'v'
-        let l:line = a:direction ? line("'>") : line("'<") - 1
-    endif
+"------BLANKS------
+nmap [o <plug>AddBlanksAbove
+nmap ]o <plug>AddBlanksBelow
 
-    let l:blanks = repeat([''], v:count ? v:count : 1)
+xmap [o <plug>AddBlanksAbove
+xmap ]o <plug>AddBlanksBelow
 
-    call append(l:line, l:blanks)
-endfunction
-
-nnoremap <silent> [o :<c-u>call <sid>AddBlanks(0, 'n')<cr>
-nnoremap <silent> ]o :<c-u>call <sid>AddBlanks(1, 'n')<cr>
-
-xnoremap <silent> [o :<c-u>call <sid>AddBlanks(0, 'v')<cr>gv
-xnoremap <silent> ]o :<c-u>call <sid>AddBlanks(1, 'v')<cr>gv
-
-nmap <a-O> [o
-nmap <a-o> ]o
-
-" move
-nnoremap <silent> <expr> M
-    \ printf(':<c-u>move .-%s<cr>', v:count < 2 ? 2 : v:count + 1)
-nnoremap <silent> <expr> m
-    \ printf(':<c-u>move .+%s<cr>', v:count ? v:count : 1)
-
-xnoremap <silent> <expr> M
-    \ printf("<esc>:'<,'>move %s<cr>%s", v:count ? '.-' . (v:count + 1) : "'<-2", v:count ? '' : 'gv')
-xnoremap <silent> <expr> m
-    \ printf("<esc>:'<,'>move %s<cr>%s", v:count ? '.+' . v:count : "'>+1", v:count ? '' : 'gv')
-
-" xnoremap <silent> [o :call append(line("'<") - 1, '')<cr>
-" xnoremap <silent> ]o :call append(line("'>"), '')<cr>
-
-" haul (duplicate)
-" nmap H <Plug>(LineJugglerDupRangeUp)
-" nmap h <Plug>(LineJugglerDupRangeDown)
-
-" xmap H <Plug>(LineJugglerDupRangeUp)
-" xmap h <Plug>(LineJugglerDupRangeDown)
-
-" Clipboard
+"------CLIPBOARD------
 nnoremap gd "+d
 xnoremap gd "+d
 
@@ -310,18 +290,25 @@ xnoremap gp "+p
 nnoremap gP "+P
 xnoremap gP "+P
 
-" ToggleRelativeNumbers
-nnoremap <silent> <space>1 :NumbersToggle<cr>
+"------SEARCH------
+nnoremap g3 g#
+nnoremap g8 g*
 
-"Clear search highlights on CTRL-C.
+nnoremap <a-8> *<c-o>
+nnoremap g<a-8> g*<c-o>
+
+" Clear search highlights on CTRL-C.
 noremap <silent> <c-c> <c-c>:noh<cr>
 
+" Toggle relative numbers.
+nnoremap <silent> <space>1 :NumbersToggle<cr>
+
 "------INSERT------
-"Completion
+" completion
 inoremap <a-k> <c-p>
 inoremap <a-l> <c-n>
 
-"Excute normal command.
+" Execute normal command.
 inoremap <s-esc> <c-o>
 
 "------EX------

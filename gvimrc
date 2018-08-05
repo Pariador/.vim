@@ -30,14 +30,14 @@ endfunction
 nnoremap <MiddleMouse> V
 xnoremap <expr> <MiddleMouse> ToggleVisualKey()
 
-noremap <silent> <F11> :GvimTweakToggleFullScreen<CR>
+noremap <silent> <space><cr> :GvimTweakToggleFullScreen<CR>
 
 "------DISPLAY-SETTINGS------
 set guioptions =c!
 
 " Window position and size.
-winpos 264 83
-set lines =35
+winpos 555 20
+set lines =66
 set columns =120
 
 set winaltkeys =no "No alt keys for gui menus

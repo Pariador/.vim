@@ -96,7 +96,6 @@ let g:buffergator_tab_statusline = 0
 "------NERDTree------
 let g:NERDTreeBookmarksFile = expand($MYRUNTIME . "/nerdmarks")
 let g:NERDTreeQuitOnOpen = 1
-" let g:NERDTreeShowLineNumbers = 1
 let g:NERDTreeWinPos = "right"
 let g:NERDTreeWinSize = 40
 
