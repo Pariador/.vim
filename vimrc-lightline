@@ -75,14 +75,14 @@ let s:component_min_widths = {
     \ 'file_name': 30,
     \ 'flags': 40,
     \ 'filetype': 120,
-    \ 'filedata': 130,
+    \ 'filedata': 140,
     \ 'percent': 63,
     \
     \ 'lineinfo_glyph': 56,
     \ 'lineinfo_max_lines': 56,
     \ 'lineinfo': 51,
     \
-    \ 'noscrollbar': 88,
+    \ 'noscrollbar': 93,
     \ 'nerd_tree_dir': 56,
     \ 'buffergator': 25,
     \

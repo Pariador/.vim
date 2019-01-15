@@ -35,9 +35,11 @@ function! DuplicateInLine(line, from, to, count)
 endfunction
 
 function! DuplicateLines(from, to, count)
-    for i in range(a:count)
-        exec 'silent' a:from ',' a:to 'copy' a:to
-    endfor
+    let lines = getline(a:from, a:to)
+
+    let result = repeat(lines, a:count)
+
+    call append(a:to, result)
 
     call setpos('.', [0, a:from, 0, 0])
     normal! ^

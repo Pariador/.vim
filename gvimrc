@@ -35,6 +35,9 @@ noremap <silent> <space><cr> :GvimTweakToggleFullScreen<CR>
 "------DISPLAY-SETTINGS------
 set guioptions =c!
 
+" set renderoptions =type:directx
+" set rop=type:directx,gamma:1.8,contrast:0.5,level:0.5,geom:1,renmode:5,taamode:1
+
 " Window position and size.
 winpos 555 20
 set lines =66

@@ -54,6 +54,10 @@ xnoremap zb <nop>
 nnoremap @ <nop>
 xnoremap @ <nop>
 
+nnoremap <c-w>h <nop>
+nnoremap <c-w><a-h> <nop>
+nnoremap <c-w>H <nop>
+
 "------MOTIONS------
 nnoremap j <left>
 nnoremap k <up>
@@ -297,11 +301,38 @@ nnoremap g8 g*
 nnoremap <a-8> *<c-o>
 nnoremap g<a-8> g*<c-o>
 
+"------JOIN------
+nnoremap gj J
+xnoremap gj J
+
 " Clear search highlights on CTRL-C.
 noremap <silent> <c-c> <c-c>:noh<cr>
 
 " Toggle relative numbers.
 nnoremap <silent> <space>1 :NumbersToggle<cr>
+
+"------WINDOWS------
+" Esc
+nnoremap <expr> <c-w><esc> '\<nop\>'
+
+nnoremap gw <c-w>w
+
+nnoremap <c-w>j <c-w><left>
+nnoremap <c-w>k <c-w><up>
+nnoremap <c-w>l <c-w><down>
+nnoremap <c-w>; <c-w><right>
+
+nnoremap <c-w><a-j> <c-w>H
+nnoremap <c-w><a-k> <c-w>K
+nnoremap <c-w><a-l> <c-w>J
+nnoremap <c-w><a-;> <c-w>L
+
+" WindowSwap
+nnoremap <silent> <c-w>m :<c-u>call WindowSwap#EasyWindowSwap()<cr>
+nmap <c-w>J <c-w>m<c-w>j<c-w>m
+nmap <c-w>K <c-w>m<c-w>k<c-w>m
+nmap <c-w>L <c-w>m<c-w>l<c-w>m
+nmap <c-w>: <c-w>m<c-w>;<c-w>m
 
 "------INSERT------
 " completion
@@ -335,32 +366,6 @@ nmap <expr> <space>]` ']`norm '
 nmap <expr> <space>[` '[`norm '
 
 cabbrev te tabedit
-
-"------WINDOW------
-" Unmap
-nnoremap <c-w>h <nop>
-nnoremap <c-w><a-h> <nop>
-nnoremap <c-w>H <nop>
-
-" Esc
-nnoremap <expr> <c-w><esc> '\<nop\>'
-
-nnoremap <c-w>j <c-w><left>
-nnoremap <c-w>k <c-w><up>
-nnoremap <c-w>l <c-w><down>
-nnoremap <c-w>; <c-w><right>
-
-nnoremap <c-w><a-j> <c-w>H
-nnoremap <c-w><a-k> <c-w>K
-nnoremap <c-w><a-l> <c-w>J
-nnoremap <c-w><a-;> <c-w>L
-
-" WindowSwap
-nnoremap <silent> <c-w>m :call WindowSwap#EasyWindowSwap()<cr>
-nmap <c-w>J <c-w>m<c-w>j<c-w>m
-nmap <c-w>K <c-w>m<c-w>k<c-w>m
-nmap <c-w>L <c-w>m<c-w>l<c-w>m
-nmap <c-w>: <c-w>m<c-w>;<c-w>m
 
 "------SPACE------
 " Esc
