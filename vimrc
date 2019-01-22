@@ -1,3 +1,7 @@
+"------IMPORTANT-SETTINGS------
+set nocompatible " Vi compatibility
+set encoding =utf-8 " Vim internal encoding.
+
 "------RUNTIMEPATH------
 let $MYRUNTIME = '~/.vim'
 let s:runtimes = [$VIMRUNTIME, $MYRUNTIME, $MYRUNTIME . '/after']
@@ -13,9 +17,7 @@ let g:close_fat_bracket = '❱'
 let g:fat_bracket_format = g:open_fat_bracket . '%s' . g:close_fat_bracket
 
 "------SETTINGS------
-set encoding =utf-8 " Vim internal encoding.
 set fileformats =dos,unix,mac
-set nocompatible " Vi compatibility
 set notimeout " Unfinished mappings don't timeout.
 syntax on
 
@@ -31,7 +33,7 @@ set autoindent " See also smartindent, cindent and indentexpr.
 " Folding
 set foldlevelstart =99 " Open all folds when opening a file.
 
-set hidden
+set hidden " Hide buffers don't unload them, when all buffer windows are closed.
 let &path = '.,,./**5,**5' " Directories for searching files with :find.
 set backspace =2 " Allows you to backspace auto indent.
 
@@ -54,13 +56,12 @@ set foldcolumn =1
 " Set indent guides for tabs.
 let &listchars = 'tab:|\ '
 
-" Search highlighting.
-set hlsearch
-set incsearch
+set hlsearch " Search highlighting.
+set incsearch " Peek at first search match.
 
 set lazyredraw " Don't redraw screen while executing macros.
 
-set belloff =all " Silence Error Beeps.
+set belloff =all " Silence error beeps.
 " set showmatch " Move cursor to show matching brace while inserting.
 
 " Windows
@@ -83,20 +84,6 @@ let &statusline .= '%=' " Switch to right side.
 let &statusline .= '[%02.l, %02.c]' " Row and Col.
 let &statusline .= '   ' " Padding.
 let &statusline .= '[%03.P]' " % of file on screen.
-
-"------CONEMU-SETTINGS------
-if  !empty($ConEmuPID)
-    set term =xterm
-    set t_Co =256
-    let &t_AB = "\e[48;5;%dm"
-    let &t_AF = "\e[38;5;%dm"
-    colorscheme default
-
-    " Fix Backspace.
-    inoremap <Char-0x07F> <BS>
-    nnoremap <Char-0x07F> <BS>
-endif
-
 "------PLUGINS------
 source $MYRUNTIME/vimrc-plugins
 
