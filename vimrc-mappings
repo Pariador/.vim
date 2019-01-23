@@ -89,13 +89,13 @@ nnoremap < ,
 onoremap < ,
 xnoremap < ,
 
-nnoremap 0 ^
-onoremap 0 ^
-xnoremap 0 ^
+" nnoremap 0 ^
+" onoremap 0 ^
+" xnoremap 0 ^
 
-nnoremap ^ 0
-onoremap ^ 0
-xnoremap ^ 0
+" nnoremap ^ 0
+" onoremap ^ 0
+" xnoremap ^ 0
 
 "------OPERATORS------
 " delete
