@@ -32,6 +32,7 @@ set autoindent " See also smartindent, cindent and indentexpr.
 
 " Folding
 set foldlevelstart =99 " Open all folds when opening a file.
+let &viewdir = expand($MYRUNTIME . "/views")
 
 set hidden " Hide buffers don't unload them, when all buffer windows are closed.
 let &path = '.,,./**5,**5' " Directories for searching files with :find.
