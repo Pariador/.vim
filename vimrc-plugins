@@ -4,7 +4,7 @@ call plug#begin($MYRUNTIME . "/plugged")
 " The NERDTree is a file system explorer for the Vim editor.
 Plug 'scrooloose/nerdtree'
 
-" Buffer list explored.
+" Buffer list explorer.
 Plug 'jeetsukumaran/vim-buffergator'
 
 " For moving buffers across windows.
@@ -17,14 +17,14 @@ Plug 'itchyny/lightline.vim'
 Plug 'gcavallanti/vim-noscrollbar'
 
 " Snippets
-Plug 'marcweber/vim-addon-mw-utils' " Sniptmate dependency
-Plug 'tomtom/tlib_vim' " Sniptmate dependency
-Plug 'garbas/vim-snipmate'
+" Plug 'marcweber/vim-addon-mw-utils' " Sniptmate dependency
+" Plug 'tomtom/tlib_vim' " Sniptmate dependency
+" Plug 'garbas/vim-snipmate'
 
 " ALE (Asynchronous Lint Engine)
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
-" Comments
+" Comments operator.
 Plug 'tpope/vim-commentary'
 
 " Insert or delete brackets, parens, quotes in pairs.
@@ -40,9 +40,9 @@ Plug 'vim-scripts/visualrepeat'
 " Plug 'vim-scripts/LineJuggler'
 
 " Surround text-objects.
-Plug 'tpope/vim-surround'
+" Plug 'tpope/vim-surround'
 
-" Indent text-object.
+" Adds text-object that's based on indentation level.
 Plug 'michaeljsmith/vim-indent-object'
 
 " Custom and fold text objects.
@@ -62,7 +62,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'myusuf3/numbers.vim'
 
 " Emmet
-Plug 'mattn/emmet-vim'
+" Plug 'mattn/emmet-vim'
 
 " Syntax
 Plug 'pangloss/vim-javascript'
@@ -86,18 +86,18 @@ call plug#end()
 let g:loaded_netrw = 1
 let g:loaded_netrwPlugin = 1
 
+"------NERDTree------
+let g:NERDTreeBookmarksFile = expand($MYRUNTIME . "/nerdmarks")
+let g:NERDTreeQuitOnOpen = 1
+let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinSize = 40
+
 "------BUFFERGATOR------
 let g:buffergator_autoexpand_on_split = 0
 let g:buffergator_suppress_keymaps = 1
 let g:buffergator_display_regime = "parentdir"
 let g:buffergator_window_statusline = 0
 let g:buffergator_tab_statusline = 0
-
-"------NERDTree------
-let g:NERDTreeBookmarksFile = expand($MYRUNTIME . "/nerdmarks")
-let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeWinPos = "right"
-let g:NERDTreeWinSize = 40
 
 "------WINDOWSWAP------
 let g:windowswap_map_keys = 0
@@ -106,11 +106,11 @@ let g:windowswap_map_keys = 0
 source $MYRUNTIME/vimrc-lightline
 
 "------SNIPMATE------
-let g:snipMate = {}
-let g:snipMate.snippet_version = 1
+" let g:snipMate = {}
+" let g:snipMate.snippet_version = 1
 
 "------ALE------
-let g:ale_enabled = 0
+" let g:ale_enabled = 0
 
 "------FOLD-TEXT-OBJECT------
 let g:textobj_fold_no_default_key_mappings = 1
@@ -145,5 +145,5 @@ if has("gui_running")
 endif
 
 "------EMMET------
-let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+" let g:user_emmet_install_global = 0
+" autocmd FileType html,css EmmetInstall
