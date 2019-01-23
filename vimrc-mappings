@@ -116,22 +116,22 @@ nnoremap Y y$
 nnoremap <a-y> y^
 
 " move
-nmap M <plug>MoveUpOperatorLine
-nmap [m <plug>MoveUpOperator
-nmap [mm <plug>MoveUpOperatorLine
-nmap [m[m <plug>MoveUpOperatorLine
-xmap M <plug>MoveUpOperator
+" nmap M <plug>MoveUpOperatorLine
+" nmap [m <plug>MoveUpOperator
+" nmap [mm <plug>MoveUpOperatorLine
+" nmap [m[m <plug>MoveUpOperatorLine
+" xmap M <plug>MoveUpOperator
 
-nmap m <plug>MoveDownOperatorLine
-nmap ]m <plug>MoveDownOperator
-nmap ]mm <plug>MoveDownOperatorLine
-nmap ]m]m <plug>MoveDownOperatorLine
-xmap m <plug>MoveDownOperator
+" nmap m <plug>MoveDownOperatorLine
+" nmap ]m <plug>MoveDownOperator
+" nmap ]mm <plug>MoveDownOperatorLine
+" nmap ]m]m <plug>MoveDownOperatorLine
+" xmap m <plug>MoveDownOperator
 
 " duplicate
-nmap h <plug>DuplicateOperator
-nmap hh <plug>DuplicateOperatorLine
-xmap h <plug>DuplicateOperator
+" nmap h <plug>DuplicateOperator
+" nmap hh <plug>DuplicateOperatorLine
+" xmap h <plug>DuplicateOperator
 
 " indent
 nnoremap <tab> >
@@ -269,11 +269,11 @@ nnoremap <f1> g-
 nnoremap <f2> g+
 
 "------BLANKS------
-nmap [o <plug>AddBlanksAbove
-nmap ]o <plug>AddBlanksBelow
+" nmap [o <plug>AddBlanksAbove
+" nmap ]o <plug>AddBlanksBelow
 
-xmap [o <plug>AddBlanksAbove
-xmap ]o <plug>AddBlanksBelow
+" xmap [o <plug>AddBlanksAbove
+" xmap ]o <plug>AddBlanksBelow
 
 "------CLIPBOARD------
 nnoremap gd "+d
@@ -374,15 +374,9 @@ nnoremap <expr> <space><esc> '\<nop\>'
 nnoremap <silent> <space>f :NERDTreeToggle<cr>
 nnoremap <silent> <space>b :BuffergatorToggle<cr>
 
-""------ESCAPE------
-"" Esc
-"nnoremap <expr> <esc><esc> '\<nop\>'
-
-""Toggle between relative and absolute line numvers.
-"nnoremap <silent> <esc>n :NumbersToggle<cr>
-
-""Show highlight group.
-"nnoremap <silent> <esc>h :so $VIMRUNTIME/syntax/hitest.vim<cr>
-
 "------LEADER------
 nnoremap <expr> <leader><esc> '\<nop\>'
+
+"------VARIOUS------
+"Show highlight group.
+nnoremap <silent> <f8> :so $VIMRUNTIME/syntax/hitest.vim<cr>
