@@ -108,7 +108,7 @@ function! s:Execute(type)
 endfunction
 
 nnoremap <expr> <plug>DuplicateOperator <sid>Ready('n')
-nmap <plug>DuplicateOperatorLine hg@
+nmap <plug>DuplicateOperatorLine <plug>DuplicateOperatorg@
 xnoremap <silent> <expr> <plug>DuplicateOperator <sid>Ready('v')
 
 let duplicate_operator.loaded = 1
