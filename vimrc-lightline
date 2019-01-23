@@ -13,6 +13,7 @@ let g:lightline.component = {}
 let g:lightline.component_visible_condition = {
 \ }
 
+" Funcitons that pull and format the status line info.
 let g:lightline.component_function = {
     \ 'mode': 'StatusMode',
     \ 'file': 'StatusFile',
@@ -27,6 +28,7 @@ let g:lightline.component_function = {
     \ 'buffergator': 'StatusBuffergator',
 \ }
 
+" Functions that check whether to display status line info.
 let g:lightline.component_function_visible_condition = {
     \ 'file': 'StatusToDisplayFile()',
     \ 'flags': 'StatusToDisplayFlags(StatusGetFlags())',
@@ -48,6 +50,7 @@ let lightline.tab_component_function = {
 let g:lightline.mode_map = {
 \ }
 
+" For active windows.
 let g:lightline.active = {
     \ 'left': [
         \ ['mode', 'paste'],
@@ -57,6 +60,7 @@ let g:lightline.active = {
     \ 'right': [['percent', 'lineinfo', 'linetest'], ['noscrollbar']]
 \ }
 
+" For inactive windows.
 let g:lightline.inactive = {
     \ 'left': [['nerd_tree_dir', 'file', 'flags']],
 \ }
@@ -125,7 +129,7 @@ let s:mode_map = {
     \ 't': 'TERMINAL',
     \
     \ 'NERDTree': 'NERD',
-    \ 'Buffergator': 'BUFFER',
+    \ 'Buffergator': 'BUFFERS',
     \ 'Plug': 'Plug',
 \ }
 
