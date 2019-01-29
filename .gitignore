@@ -1,6 +1,7 @@
 **/.*.s[a-w][a-p]
 
 autoload/plug.vim
+autoload/plug.vim.old
 plugged/
 
 viminfo
