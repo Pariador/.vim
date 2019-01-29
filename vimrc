@@ -2,8 +2,12 @@
 set nocompatible " Vi compatibility
 set encoding =utf-8 " Vim internal encoding.
 
-"------RUNTIMEPATH------
+"------ENVIRONMENT-VARIABLES------
 let $MYRUNTIME = '~/.vim'
+let $MYVIMRC = expand('$MYRUNTIME/vimrc')
+let $MYGVIMRC = expand('$MYRUNTIME/gvimrc')
+
+"------RUNTIMEPATH------
 let s:runtimes = [$VIMRUNTIME, $MYRUNTIME, $MYRUNTIME . '/after']
 
 let &runtimepath = join(s:runtimes, ',')

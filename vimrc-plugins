@@ -65,6 +65,8 @@ Plug 'myusuf3/numbers.vim'
 " Plug 'mattn/emmet-vim'
 
 " Syntax
+" For plugin syntax files to work, disable the corresponding
+" original vim syntax files.
 Plug 'pangloss/vim-javascript'
 
 " Themes.
