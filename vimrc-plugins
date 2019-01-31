@@ -16,6 +16,9 @@ Plug 'itchyny/lightline.vim'
 " Statusline scrollbar display.
 Plug 'gcavallanti/vim-noscrollbar'
 
+" Filetype Templates
+Plug 'aperezdc/vim-template'
+
 " Snippets
 " Plug 'marcweber/vim-addon-mw-utils' " Sniptmate dependency
 " Plug 'tomtom/tlib_vim' " Sniptmate dependency
@@ -106,6 +109,10 @@ let g:windowswap_map_keys = 0
 
 "------LIGHTLINE------
 source $MYRUNTIME/vimrc-lightline
+
+"------VIM-TEMPLATE------
+let g:templates_directory = $MYRUNTIME . '/templates'
+let g:templates_no_builtin_templates = 1
 
 "------SNIPMATE------
 " let g:snipMate = {}
