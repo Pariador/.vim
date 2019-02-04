@@ -6,6 +6,8 @@ Plug 'scrooloose/nerdtree'
 
 " Buffer list explorer.
 Plug 'jeetsukumaran/vim-buffergator'
+" Echo buffers on the command line when switching buffers.
+Plug 'bling/vim-bufferline'
 
 " For moving buffers across windows.
 Plug 'wesq3/vim-windowswap'
@@ -107,6 +109,12 @@ let g:buffergator_suppress_keymaps = 1
 let g:buffergator_display_regime = "parentdir"
 let g:buffergator_window_statusline = 0
 let g:buffergator_tab_statusline = 0
+
+"------BUFFERLINE------
+let g:bufferline_active_buffer_left = g:open_fat_bracket
+let g:bufferline_active_buffer_right = g:close_fat_bracket
+let g:bufferline_modified = ' [+]'
+let g:bufferline_rotate = 2
 
 "------WINDOWSWAP------
 let g:windowswap_map_keys = 0

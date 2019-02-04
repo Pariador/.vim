@@ -1,4 +1,4 @@
-
+" Unfinished code for a bufferline-like plugin for the args list.
 function EchoArgs()
     let l:args = argv()
     let l:i = argidx()

@@ -308,9 +308,6 @@ xnoremap gj J
 " Clear search highlights on CTRL-C.
 noremap <silent> <c-c> <c-c>:noh<cr>
 
-" Toggle relative numbers.
-nnoremap <silent> <space>1 :NumbersToggle<cr>
-
 "------WINDOWS------
 " Esc
 nnoremap <expr> <c-w><esc> '\<nop\>'
@@ -374,6 +371,8 @@ nnoremap <expr> <space><esc> '\<nop\>'
 nnoremap <silent> <space>f :NERDTreeToggle<cr>
 nnoremap <silent> <space>b :BuffergatorToggle<cr>
 
+" Toggle relative numbers.
+nnoremap <silent> <space>1 :NumbersToggle<cr>
 "------LEADER------
 nnoremap <expr> <leader><esc> '\<nop\>'
 
