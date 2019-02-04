@@ -1,77 +1,3 @@
-"------SETTINGS------
-let g:lightline = {}
-
-let g:lightline.colorscheme = 'molokai_mod'
-
-let g:lightline.separator = { 'left': '', 'right': '' }
-
-let g:lightline.subseparator = { 'left': '', 'right': '' }
-
-let g:lightline.component = {}
-"\ }
-
-let g:lightline.component_visible_condition = {
-\ }
-
-" Funcitons that pull and format the status line info.
-let g:lightline.component_function = {
-    \ 'mode': 'StatusMode',
-    \ 'file': 'StatusFile',
-    \ 'flags': 'StatusFlags',
-    \ 'filetype': 'StatusFileType',
-    \ 'filedata': 'StatusFileData',
-    \ 'percent': 'StatusPercent',
-    \ 'lineinfo': 'StatusLineInfo',
-    \
-    \ 'noscrollbar': 'StatusNoscrollbar',
-    \ 'nerd_tree_dir': 'StatusNERDTreeDir',
-    \ 'buffergator': 'StatusBuffergator',
-\ }
-
-" Functions that check whether to display status line info.
-let g:lightline.component_function_visible_condition = {
-    \ 'file': 'StatusToDisplayFile()',
-    \ 'flags': 'StatusToDisplayFlags(StatusGetFlags())',
-    \ 'filetype': 'StatusToDisplayFileType()',
-    \ 'filedata': 'StatusToDisplayFileData()',
-    \ 'percent': 'StatusToDisplayPercent()',
-    \ 'lineinfo': 'StatusToDisplayLineInfo()',
-    \
-    \ 'noscrollbar': 'StatusToDisplayNoscrollbar()',
-    \ 'nerd_tree_dir': "StatusGetSpecial() == 'NERDTree'",
-    \ 'buffergator': "StatusGetSpecial() == 'Buffergator'",
-\ }
-
-let lightline.tab_component_function = {
-    \ 'tabnum': 'TabsTabNum',
-    \ 'wincount': 'TabsWinCount',
-\ }
-
-let g:lightline.mode_map = {
-\ }
-
-" For active windows.
-let g:lightline.active = {
-    \ 'left': [
-        \ ['mode', 'paste'],
-        \ ['buffergator', 'nerd_tree_dir', 'file', 'flags'],
-        \ ['filetype', 'filedata']
-    \ ],
-    \ 'right': [['percent', 'lineinfo', 'linetest'], ['noscrollbar']]
-\ }
-
-" For inactive windows.
-let g:lightline.inactive = {
-    \ 'left': [['nerd_tree_dir', 'file', 'flags']],
-\ }
-
-let g:lightline.tabline = { 'right': [] }
-
-let g:lightline.tab = {
-    \ 'active': [ 'tabnum', 'filename', 'modified', 'wincount'],
-    \ 'inactive': [ 'tabnum', 'filename', 'modified', 'wincount']
-\ }
-
 "------COMPONENTS------
 let s:component_min_widths = {
     \ 'full_mode': 68,
@@ -94,9 +20,7 @@ let s:component_min_widths = {
     \ 'modified': 65,
 \ }
 
-function! StatusGetSpecial()
-    let l:file_name = expand('%:t')
-
+function! s:StatusGetSpecial()
     if exists('b:NERDTree')
         return 'NERDTree'
     elseif exists('b:buffergator_catalog_viewer')
@@ -157,7 +81,7 @@ let s:brief_mode_map = {
     \ 'Plug': 'Plug',
 \ }
 
-function! StatusMode()
+function! s:StatusMode()
     let l:default = 'n'
 
     let l:map = s:mode_map
@@ -165,7 +89,7 @@ function! StatusMode()
         let l:map = s:brief_mode_map
     endif
 
-    let l:mode = StatusGetSpecial()
+    let l:mode = s:StatusGetSpecial()
 
     let l:mode = l:mode == '' ? mode(1) : l:mode
 
@@ -177,12 +101,12 @@ function! StatusMode()
 endfunction
 
 " File
-function! StatusToDisplayFile()
-    return StatusGetSpecial() == ''
+function! s:StatusToDisplayFile()
+    return s:StatusGetSpecial() == ''
 endfunction
 
-function! StatusFile()
-    if !StatusToDisplayFile() || winwidth(0) < s:component_min_widths.file_name
+function! s:StatusFile()
+    if !s:StatusToDisplayFile() || winwidth(0) < s:component_min_widths.file_name
         return ''
     elseif winwidth(0) >= s:component_min_widths.file_relativepath
         return expand('%')
@@ -192,7 +116,7 @@ function! StatusFile()
 endfunction
 
 " Flags
-function! StatusGetFlags()
+function! s:StatusGetFlags()
     let l:flags = [
         \ &previewwindow ? 'PRV' : '',
         \ &buftype == 'help' ? 'HELP' : '',
@@ -204,14 +128,25 @@ function! StatusGetFlags()
     return filter(l:flags, {i, value -> value != ''})
 endfunction
 
-function! StatusToDisplayFlags(flags)
-    return StatusGetSpecial() == '' && !empty(a:flags)
+function! s:StatusToDisplayFlags(...)
+    if s:StatusGetSpecial() != ''
+        return 0
+    endif
+
+    if a:0
+        let l:flags = a:1
+    else
+        let l:flags = s:StatusGetFlags()
+    endif
+
+    return !empty(l:flags)
+
 endfunction
 
-function! StatusFlags()
-    let l:flags = StatusGetFlags()
+function! s:StatusFlags()
+    let l:flags = s:StatusGetFlags()
 
-    if !StatusToDisplayFlags(l:flags) ||
+    if !s:StatusToDisplayFlags(l:flags) ||
         \ winwidth(0) < s:component_min_widths.flags
         return ''
     endif
@@ -224,12 +159,12 @@ function! StatusFlags()
 endfunction
 
 " FileType
-function! StatusToDisplayFileType()
-    return StatusGetSpecial() == '' && &filetype != ''
+function! s:StatusToDisplayFileType()
+    return s:StatusGetSpecial() == '' && &filetype != ''
 endfunction
 
-function! StatusFileType()
-    if !StatusToDisplayFileType() ||
+function! s:StatusFileType()
+    if !s:StatusToDisplayFileType() ||
         \ winwidth(0) < s:component_min_widths.filetype
         return ''
     endif
@@ -238,8 +173,8 @@ function! StatusFileType()
 endfunction
 
 " FileData
-function! StatusToDisplayFileData()
-    if StatusGetSpecial() != '' ||
+function! s:StatusToDisplayFileData()
+    if s:StatusGetSpecial() != '' ||
         \ (&fileencoding == '' && &fileformat == '')
         return 0
     endif
@@ -247,8 +182,8 @@ function! StatusToDisplayFileData()
     return 1
 endfunction
 
-function! StatusFileData()
-    if !StatusToDisplayFileData() ||
+function! s:StatusFileData()
+    if !s:StatusToDisplayFileData() ||
         \ winwidth(0) < s:component_min_widths.filedata
         return ''
     endif
@@ -261,12 +196,12 @@ function! StatusFileData()
 endfunction
 
 " Percent
-function! StatusToDisplayPercent()
-    return StatusGetSpecial() == ''
+function! s:StatusToDisplayPercent()
+    return s:StatusGetSpecial() == ''
 endfunction
 
-function! StatusPercent()
-    if !StatusToDisplayPercent() || winwidth(0) < s:component_min_widths.percent
+function! s:StatusPercent()
+    if !s:StatusToDisplayPercent() || winwidth(0) < s:component_min_widths.percent
         return ''
     endif
 
@@ -276,15 +211,15 @@ function! StatusPercent()
 endfunction
 
 " LineInfo
-function! StatusToDisplayLineInfo()
-    let l:special = StatusGetSpecial()
+function! s:StatusToDisplayLineInfo()
+    let l:special = s:StatusGetSpecial()
     return l:special == '' || l:special == 'Plug'
 endfunction
 
-function! StatusLineInfo()
+function! s:StatusLineInfo()
     let l:winwidth = winwidth(0)
 
-    if !StatusToDisplayLineInfo() ||
+    if !s:StatusToDisplayLineInfo() ||
         \ l:winwidth < s:component_min_widths.lineinfo
         return ''
     endif
@@ -306,12 +241,12 @@ function! StatusLineInfo()
 endfunction
 
 " NoScrollbar
-function! StatusToDisplayNoscrollbar()
-    return StatusGetSpecial() == ''
+function! s:StatusToDisplayNoscrollbar()
+    return s:StatusGetSpecial() == ''
 endfunction
 
-function! StatusNoscrollbar()
-    if !StatusToDisplayNoscrollbar() ||
+function! s:StatusNoscrollbar()
+    if !s:StatusToDisplayNoscrollbar() ||
         \ winwidth(0) < s:component_min_widths.noscrollbar
         return ''
     endif
@@ -319,9 +254,9 @@ function! StatusNoscrollbar()
     return noscrollbar#statusline(20,'■','◫',['◧'],['◨'])
 endfunction
 
-" NERDTreeDir
-function! StatusNERDTreeDir()
-    if StatusGetSpecial() != 'NERDTree' ||
+" NERDTree
+function! s:StatusNERDTreeDir()
+    if s:StatusGetSpecial() != 'NERDTree' ||
         \ winwidth(0) < s:component_min_widths.nerd_tree_dir
         return ''
     endif
@@ -329,11 +264,15 @@ function! StatusNERDTreeDir()
     return b:NERDTree.root.path.str()
 endfunction
 
+function! s:StatusToDisplayNERDTree()
+    return s:StatusGetSpecial() == 'NERDTree'
+endfunction
+
 " Buffergator
-function! StatusBuffergator()
+function! s:StatusBuffergator()
     let l:line = line('.')
 
-    if StatusGetSpecial() != 'Buffergator' ||
+    if s:StatusGetSpecial() != 'Buffergator' ||
         \ winwidth(0) < s:component_min_widths.buffergator ||
         \ !has_key(b:buffergator_catalog_viewer.jump_map, l:line)
         return ''
@@ -344,12 +283,16 @@ function! StatusBuffergator()
     return printf('Buffer %d of %d', l:line, l:buffers_count)
 endfunction
 
+function! s:StatusToDisplayBuffergator()
+    return s:StatusGetSpecial() == 'Buffergator'
+endfunction
+
 " Tabs
-function! TabsTabNum(tab)
+function! s:TabsTabNum(tab)
     return printf(g:fat_bracket_format, a:tab)
 endfunction
 
-function! TabsWinCount(tab)
+function! s:TabsWinCount(tab)
     let l:win_count = len(tabpagebuflist(a:tab))
 
     if l:win_count < 2
@@ -358,3 +301,77 @@ function! TabsWinCount(tab)
 
     return printf('|%d|', l:win_count)
 endfunction
+
+"------SETTINGS------
+let g:lightline = {}
+
+let g:lightline.colorscheme = 'molokai_mod'
+
+let g:lightline.separator = { 'left': '', 'right': '' }
+
+let g:lightline.subseparator = { 'left': '', 'right': '' }
+
+let g:lightline.component = {}
+"\ }
+
+let g:lightline.component_visible_condition = {
+\ }
+
+" Funcitons that pull and format the status line info.
+let g:lightline.component_function = {
+    \ 'mode': get(funcref('s:StatusMode'), 'name'),
+    \ 'file': get(funcref('s:StatusFile'), 'name'),
+    \ 'flags': get(funcref('s:StatusFlags'), 'name'),
+    \ 'filetype': get(funcref('s:StatusFileType'), 'name'),
+    \ 'filedata': get(funcref('s:StatusFileData'), 'name'),
+    \ 'percent': get(funcref('s:StatusPercent'), 'name'),
+    \ 'lineinfo': get(funcref('s:StatusLineInfo'), 'name'),
+    \
+    \ 'noscrollbar': get(funcref('s:StatusNoscrollbar'), 'name'),
+    \ 'nerd_tree_dir': get(funcref('s:StatusNERDTreeDir'), 'name'),
+    \ 'buffergator': get(funcref('s:StatusBuffergator'), 'name'),
+\ }
+
+" Functions that check whether to display status line info.
+let g:lightline.component_function_visible_condition = {
+    \ 'file': get(funcref('s:StatusToDisplayFile'), 'name') . '()',
+    \ 'flags': get(funcref('s:StatusToDisplayFlags'), 'name') . '()',
+    \ 'filetype': get(funcref('s:StatusToDisplayFileType'), 'name') . '()',
+    \ 'filedata': get(funcref('s:StatusToDisplayFileData'), 'name') . '()',
+    \ 'percent': get(funcref('s:StatusToDisplayPercent'), 'name') . '()',
+    \ 'lineinfo': get(funcref('s:StatusToDisplayLineInfo'), 'name') . '()',
+    \
+    \ 'noscrollbar': get(funcref('s:StatusToDisplayNoscrollbar'), 'name') . '()',
+    \ 'nerd_tree_dir': get(funcref('s:StatusToDisplayNERDTree'), 'name') . '()',
+    \ 'buffergator': get(funcref('s:StatusToDisplayBuffergator'), 'name') . '()',
+\ }
+
+let lightline.tab_component_function = {
+    \ 'tabnum': get(funcref('s:TabsTabNum'), 'name'),
+    \ 'wincount': get(funcref('s:TabsWinCount'), 'name'),
+\ }
+
+let g:lightline.mode_map = {
+\ }
+
+" For active windows.
+let g:lightline.active = {
+    \ 'left': [
+        \ ['mode', 'paste'],
+        \ ['buffergator', 'nerd_tree_dir', 'file', 'flags'],
+        \ ['filetype', 'filedata']
+    \ ],
+    \ 'right': [['percent', 'lineinfo', 'linetest'], ['noscrollbar']]
+\ }
+
+" For inactive windows.
+let g:lightline.inactive = {
+    \ 'left': [['nerd_tree_dir', 'file', 'flags']],
+\ }
+
+let g:lightline.tabline = { 'right': [] }
+
+let g:lightline.tab = {
+    \ 'active': [ 'tabnum', 'filename', 'modified', 'wincount'],
+    \ 'inactive': [ 'tabnum', 'filename', 'modified', 'wincount']
+\ }
