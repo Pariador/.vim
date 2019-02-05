@@ -1,5 +1,3 @@
-source $MYRUNTIME/lightline-components.vim
-
 let g:lightline = {}
 
 let g:lightline.colorscheme = 'molokai_mod'
@@ -16,36 +14,36 @@ let g:lightline.component_visible_condition = {
 
 " Funcitons that pull and format the status line info.
 let g:lightline.component_function = {
-    \ 'mode': 'lightline_components.mode.get',
-    \ 'file': 'lightline_components.file.get',
-    \ 'flags': 'lightline_components.flags.get',
-    \ 'filetype': 'lightline_components.filetype.get',
-    \ 'filedata': 'lightline_components.filedata.get',
-    \ 'percent': 'lightline_components.percent.get',
-    \ 'lineinfo': 'lightline_components.lineinfo.get',
+    \ 'mode': 'lightline#components#get_mode',
+    \ 'file': 'lightline#components#get_file',
+    \ 'flags': 'lightline#components#get_flags',
+    \ 'filetype': 'lightline#components#get_filetype',
+    \ 'filedata': 'lightline#components#get_filedata',
+    \ 'percent': 'lightline#components#get_percent',
+    \ 'lineinfo': 'lightline#components#get_lineinfo',
     \
-    \ 'noscrollbar': 'lightline_components.noscrollbar.get',
-    \ 'nerd_tree_dir': 'lightline_components.nerd_tree_dir.get',
-    \ 'buffergator': 'lightline_components.buffergator.get',
+    \ 'noscrollbar': 'lightline#components#get_noscrollbar',
+    \ 'nerd_tree_dir': 'lightline#components#get_nerd_tree_dir',
+    \ 'buffergator': 'lightline#components#get_buffergator',
 \ }
 
 " Functions that check whether to display status line info.
 let g:lightline.component_function_visible_condition = {
-    \ 'file': 'lightline_components.file.should_display()',
-    \ 'flags': 'lightline_components.flags.should_display()',
-    \ 'filetype': 'lightline_components.filetype.should_display()',
-    \ 'filedata': 'lightline_components.filedata.should_display()',
-    \ 'percent': 'lightline_components.percent.should_display()',
-    \ 'lineinfo': 'lightline_components.lineinfo.should_display()',
+    \ 'file': 'lightline#components#should_display_file()',
+    \ 'flags': 'lightline#components#should_display_flags()',
+    \ 'filetype': 'lightline#components#should_display_filetype()',
+    \ 'filedata': 'lightline#components#should_display_filedata()',
+    \ 'percent': 'lightline#components#should_display_percent()',
+    \ 'lineinfo': 'lightline#components#should_display_lineinfo()',
     \
-    \ 'noscrollbar': 'lightline_components.noscrollbar.should_display()',
-    \ 'nerd_tree_dir': 'lightline_components.nerd_tree_dir.should_display()',
-    \ 'buffergator': 'lightline_components.buffergator.should_display()',
+    \ 'noscrollbar': 'lightline#components#should_display_noscrollbar()',
+    \ 'nerd_tree_dir': 'lightline#components#should_display_nerd_tree_dir()',
+    \ 'buffergator': 'lightline#components#should_display_buffergator()',
 \ }
 
 let lightline.tab_component_function = {
-    \ 'tabnum': lightline_components.tabs.get_tabnum,
-    \ 'wincount': lightline_components.tabs.get_wincount
+    \ 'tabnum': 'lightline#components#get_tabnum',
+    \ 'wincount': 'lightline#components#get_wincount',
 \ }
 
 let g:lightline.mode_map = {

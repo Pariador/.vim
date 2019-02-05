@@ -1,14 +1,3 @@
-if !exists('lightline_components')
-    let lightline_components = {}
-endif
-
-let s:lc = lightline_components
-
-if (has_key(lightline_components, 'load') && !lightline_components.load) ||
-    \ (has_key(lightline_components, 'loaded') && lightline_components.loaded)
-    finish
-endif
-
 let s:component_min_widths = {
     \ 'full_mode': 68,
     \ 'file_relativepath': 107,
@@ -91,9 +80,7 @@ let s:brief_mode_map = {
     \ 'Plug': 'Plug',
 \ }
 
-let s:lc.mode = {}
-
-function! s:lc.mode.get() dict
+function! lightline#components#get_mode()
     let l:default = 'n'
 
     let l:map = s:mode_map
@@ -113,14 +100,13 @@ function! s:lc.mode.get() dict
 endfunction
 
 " File
-let s:lc.file = {}
-
-function! s:lc.file.should_display() dict
+function! lightline#components#should_display_file()
     return s:GetSpecial() == ''
 endfunction
 
-function! s:lc.file.get() dict
-    if !self.should_display() || winwidth(0) < s:component_min_widths.file_name
+function! lightline#components#get_file()
+    if !lightline#components#should_display_file() ||
+        \ winwidth(0) < s:component_min_widths.file_name
         return ''
     elseif winwidth(0) >= s:component_min_widths.file_relativepath
         return expand('%')
@@ -144,7 +130,7 @@ endfunction
 
 let s:lc.flags = {}
 
-function! s:lc.flags.should_display(...) dict
+function! lightline#components#should_display_flags(...)
     if s:GetSpecial() != ''
         return 0
     endif
@@ -159,10 +145,10 @@ function! s:lc.flags.should_display(...) dict
 
 endfunction
 
-function! s:lc.flags.get() dict
+function! lightline#components#get_flags()
     let l:flags = s:StatusGetFlags()
 
-    if !self.should_display(l:flags) ||
+    if !lightline#components#should_display_flags(l:flags) ||
         \ winwidth(0) < s:component_min_widths.flags
         return ''
     endif
@@ -175,14 +161,13 @@ function! s:lc.flags.get() dict
 endfunction
 
 " FileType
-let s:lc.filetype = {}
-
-function! s:lc.filetype.should_display() dict
+function! lightline#components#should_display_filetype()
     return s:GetSpecial() == '' && &filetype != ''
 endfunction
 
-function! s:lc.filetype.get() dict
-    if !self.should_display() || winwidth(0) < s:component_min_widths.filetype
+function! lightline#components#get_filetype()
+    if !lightline#components#should_display_filetype() ||
+        \ winwidth(0) < s:component_min_widths.filetype
         return ''
     endif
 
@@ -190,9 +175,7 @@ function! s:lc.filetype.get() dict
 endfunction
 
 " FileData
-let s:lc.filedata = {}
-
-function! s:lc.filedata.should_display() dict
+function! lightline#components#should_display_filedata()
     if s:GetSpecial() != '' || (&fileencoding == '' && &fileformat == '')
         return 0
     endif
@@ -200,8 +183,9 @@ function! s:lc.filedata.should_display() dict
     return 1
 endfunction
 
-function! s:lc.filedata.get() dict
-    if !self.should_display() || winwidth(0) < s:component_min_widths.filedata
+function! lightline#components#get_filedata()
+    if !lightline#components#should_display_filedata() ||
+        \ winwidth(0) < s:component_min_widths.filedata
         return ''
     endif
 
@@ -213,14 +197,13 @@ function! s:lc.filedata.get() dict
 endfunction
 
 " Percent
-let s:lc.percent = {}
-
-function! s:lc.percent.should_display() dict
+function! lightline#components#should_display_percent()
     return s:GetSpecial() == ''
 endfunction
 
-function! s:lc.percent.get() dict
-    if !self.should_display() || winwidth(0) < s:component_min_widths.percent
+function! lightline#components#get_percent()
+    if !lightline#components#should_display_percent() ||
+        \ winwidth(0) < s:component_min_widths.percent
         return ''
     endif
 
@@ -230,17 +213,16 @@ function! s:lc.percent.get() dict
 endfunction
 
 " LineInfo
-let s:lc.lineinfo = {}
-
-function! s:lc.lineinfo.should_display() dict
+function! lightline#components#should_display_lineinfo()
     let l:special = s:GetSpecial()
     return l:special == '' || l:special == 'Plug'
 endfunction
 
-function! s:lc.lineinfo.get() dict
+function! lightline#components#get_lineinfo()
     let l:winwidth = winwidth(0)
 
-    if !self.should_display() || l:winwidth < s:component_min_widths.lineinfo
+    if !lightline#components#should_display_lineinfo() ||
+        \ l:winwidth < s:component_min_widths.lineinfo
         return ''
     endif
 
@@ -261,14 +243,12 @@ function! s:lc.lineinfo.get() dict
 endfunction
 
 " NoScrollbar
-let s:lc.noscrollbar = {}
-
-function! s:lc.noscrollbar.should_display() dict
+function! lightline#components#should_display_noscrollbar()
     return s:GetSpecial() == ''
 endfunction
 
-function! s:lc.noscrollbar.get() dict
-    if !self.should_display() ||
+function! lightline#components#get_noscrollbar()
+    if !lightline#components#should_display_noscrollbar() ||
         \ winwidth(0) < s:component_min_widths.noscrollbar
         return ''
     endif
@@ -277,14 +257,12 @@ function! s:lc.noscrollbar.get() dict
 endfunction
 
 " NERDTree
-let s:lc.nerd_tree_dir = {}
-
-function! s:lc.nerd_tree_dir.should_display() dict
+function! lightline#components#should_display_nerd_tree_dir()
     return s:GetSpecial() == 'NERDTree'
 endfunction
 
-function! s:lc.nerd_tree_dir.get() dict
-    if !self.should_display() ||
+function! lightline#components#get_nerd_tree_dir()
+    if !lightline#components#should_display_nerd_tree_dir() ||
         \ winwidth(0) < s:component_min_widths.nerd_tree_dir
         let g:dont = 1
         return ''
@@ -294,16 +272,14 @@ function! s:lc.nerd_tree_dir.get() dict
 endfunction
 
 " Buffergator
-let s:lc.buffergator = {}
-
-function! s:lc.buffergator.should_display() dict
+function! lightline#components#should_display_buffergator()
     return s:GetSpecial() == 'Buffergator'
 endfunction
 
-function! s:lc.buffergator.get() dict
+function! lightline#components#get_buffergator()
     let l:line = line('.')
 
-    if !self.should_display() ||
+    if !lightline#components#should_display_buffergator() ||
         \ winwidth(0) < s:component_min_widths.buffergator ||
         \ !has_key(b:buffergator_catalog_viewer.jump_map, l:line)
         return ''
@@ -315,14 +291,11 @@ function! s:lc.buffergator.get() dict
 endfunction
 
 " Tabs
-let s:lc.tabs = {}
-
-function! s:GetTabNum(tab)
+function! lightline#components#get_tabnum(tab)
     return printf(g:fat_bracket_format, a:tab)
 endfunction
-let s:lc.tabs.get_tabnum = get(function('s:GetTabNum'), 'name')
 
-function! s:GetWinCount(tab)
+function! lightline#components#get_wincount(tab)
     let l:win_count = len(tabpagebuflist(a:tab))
 
     if l:win_count < 2
@@ -331,6 +304,3 @@ function! s:GetWinCount(tab)
 
     return printf('|%d|', l:win_count)
 endfunction
-let s:lc.tabs.get_wincount = get(function('s:GetWinCount'), 'name')
-
-let s:lc.loaded = 1
