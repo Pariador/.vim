@@ -277,17 +277,15 @@ function! lightline#components#should_display_buffergator()
 endfunction
 
 function! lightline#components#get_buffergator()
-    let l:line = line('.')
-
     if !lightline#components#should_display_buffergator() ||
         \ winwidth(0) < s:component_min_widths.buffergator ||
-        \ !has_key(b:buffergator_catalog_viewer.jump_map, l:line)
+        \ !has_key(b:buffergator_catalog_viewer, 'buffers_catalog')
         return ''
     endif
 
     let l:buffers_count = len(b:buffergator_catalog_viewer.buffers_catalog)
 
-    return printf('Buffer %d of %d', l:line, l:buffers_count)
+    return printf('Buffer %d of %d', line('.'), l:buffers_count)
 endfunction
 
 " Tabs
