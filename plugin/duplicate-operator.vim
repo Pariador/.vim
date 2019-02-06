@@ -7,7 +7,7 @@ if (has_key(duplicate_operator, 'load') && !duplicate_operator.load) ||
     finish
 endif
 
-function! FormatMessage(base, count)
+function! s:FormatMessage(base, count)
     if a:base == '' || a:count < 2
         return a:base
     endif
@@ -15,7 +15,7 @@ function! FormatMessage(base, count)
     return printf('%s %s times', a:base, a:count)
 endfunction
 
-function! DuplicateInLine(line, from, to, count)
+function! s:DuplicateInLine(line, from, to, count)
     let content = getline(a:line)
     let from = a:from - 1
     let to = a:to - 1
@@ -31,10 +31,10 @@ function! DuplicateInLine(line, from, to, count)
 
     let message = printf("'%s' copied", target)
 
-    return FormatMessage(message, a:count)
+    return s:FormatMessage(message, a:count)
 endfunction
 
-function! DuplicateLines(from, to, count)
+function! s:DuplicateLines(from, to, count)
     let lines = getline(a:from, a:to)
 
     let result = repeat(lines, a:count)
@@ -56,7 +56,7 @@ function! DuplicateLines(from, to, count)
         let message = printf('%s lines copied', lines_count)
     endif
 
-    return FormatMessage(message, a:count)
+    return s:FormatMessage(message, a:count)
 endfunction
 
 function! s:Ready(mode)
@@ -97,9 +97,9 @@ function! s:Execute(type)
         let from = col(b:duplicate_operator.from)
         let to = col(b:duplicate_operator.to)
 
-        let message = DuplicateInLine(line, from, to, l:count)
+        let message = s:DuplicateInLine(line, from, to, l:count)
     else
-        let message = DuplicateLines(from, to, l:count)
+        let message = s:DuplicateLines(from, to, l:count)
     endif
 
     if message != ''
