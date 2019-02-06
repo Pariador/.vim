@@ -45,7 +45,7 @@ Plug 'vim-scripts/visualrepeat'
 " Plug 'vim-scripts/LineJuggler'
 
 " Surround text-objects.
-" Plug 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 
 " Adds text-object that's based on indentation level.
 Plug 'michaeljsmith/vim-indent-object'
@@ -133,10 +133,11 @@ let g:templates_no_builtin_templates = 1
 "------ALE------
 " let g:ale_enabled = 0
 
+"------SURROUND-TEXT-OBJECT------
+let g:surround_no_mappings = 1
+
 "------FOLD-TEXT-OBJECT------
 let g:textobj_fold_no_default_key_mappings = 1
-xmap af <Plug>(textobj-fold-a)
-omap af <Plug>(textobj-fold-a)
 
 "------LengthMatters------
 call lengthmatters#highlight('guibg=#000000')

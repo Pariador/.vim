@@ -149,6 +149,23 @@ nnoremap @ =
 onoremap @ =
 xnoremap @ =
 
+"------TEXT-OBJECTS------
+" surround
+nmap ds  <Plug>Dsurround
+nmap cs  <Plug>Csurround
+nmap cS  <Plug>CSurround
+nmap gs  <Plug>Ysurround
+nmap gS  <Plug>YSurround
+nmap gss <Plug>Yssurround
+nmap gSs <Plug>YSsurround
+nmap gSS <Plug>YSsurround
+xmap gs   <Plug>VSurround
+xmap gS  <Plug>VgSurround
+
+" fold
+xmap af <Plug>(textobj-fold-a)
+omap af <Plug>(textobj-fold-a)
+
 "------SCROLLING------
 nnoremap K <c-u>
 xnoremap K <c-u>
