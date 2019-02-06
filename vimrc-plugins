@@ -99,8 +99,6 @@ let g:NERDTreeWinPos = "right"
 let g:NERDTreeWinSize = 40
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
-let g:NERDTreeMapChangeRoot = 'cc'
-let g:NERDTreeMapJumpNextSibling = '<c-l>'
 
 "------BUFFERGATOR------
 let g:buffergator_autoexpand_on_split = 0

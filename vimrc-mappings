@@ -398,8 +398,13 @@ nnoremap <silent> <space>b :BuffergatorToggle<cr>
 
 " Toggle relative numbers.
 nnoremap <silent> <space>1 :NumbersToggle<cr>
+
 "------LEADER------
 nnoremap <expr> <leader><esc> '\<nop\>'
+
+"------NERDTree------
+let g:NERDTreeMapChangeRoot = 'cc'
+let g:NERDTreeMapJumpNextSibling = '<c-l>'
 
 "------VARIOUS------
 "Show highlight group.
