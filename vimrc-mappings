@@ -58,6 +58,11 @@ nnoremap <c-w>h <nop>
 nnoremap <c-w><a-h> <nop>
 nnoremap <c-w>H <nop>
 
+" auto-pairs
+let g:AutoPairsShortcutToggle = ''
+let g:AutoPairsShortcutJump = ''
+let g:AutoPairsShortcutBackInsert = ''
+
 "------MOTIONS------
 nnoremap j <left>
 nnoremap k <up>
@@ -355,6 +360,9 @@ inoremap <a-l> <c-n>
 
 " Execute normal command.
 inoremap <s-esc> <c-o>
+
+" auto-pairs wrap
+let g:AutoPairsShortcutFastWrap = '<c-s>'
 
 "------EX------
 nnoremap <expr> ` v:count ? printf(':<c-u>.,.+%d', v:count) : ':'

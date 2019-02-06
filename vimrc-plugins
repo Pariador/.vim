@@ -6,11 +6,15 @@ Plug 'scrooloose/nerdtree'
 
 " Buffer list explorer.
 Plug 'jeetsukumaran/vim-buffergator'
+
 " Echo buffers on the command line when switching buffers.
 Plug 'bling/vim-bufferline'
 
 " For moving buffers across windows.
 Plug 'wesq3/vim-windowswap'
+
+" Delete buffers without closing the window.
+Plug 'qpkorr/vim-bufkill'
 
 " Cool statusline.
 Plug 'itchyny/lightline.vim'
@@ -33,16 +37,11 @@ Plug 'aperezdc/vim-template'
 Plug 'tpope/vim-commentary'
 
 " Insert or delete brackets, parens, quotes in pairs.
-"Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 
 " Repeat plugin commands with '.'.
 Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/visualrepeat'
-
-" Move and duplicate text.
-" Plug 'inkarkat/vim-ingo-library' "LineJuggler dependency
-" Plug 'vim-scripts/LineJugglerCommands'
-" Plug 'vim-scripts/LineJuggler'
 
 " Surround text-objects.
 Plug 'tpope/vim-surround'
@@ -118,6 +117,10 @@ let g:bufferline_rotate = 2
 
 "------WINDOWSWAP------
 let g:windowswap_map_keys = 0
+
+"------BUFKILL------
+let g:BufKillCreateMappings = 0
+let g:BufKillActionWhenBufferDisplayedInAnotherWindow = 'kill'
 
 "------LIGHTLINE------
 source $MYRUNTIME/vimrc-lightline
