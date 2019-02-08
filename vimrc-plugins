@@ -132,6 +132,9 @@ let g:snips_no_mappings = 1
 let g:snipMate = {
     \ 'snippet_version': 1,
     \ 'no_default_aliases': 1,
+    \ 'scope_aliases': {
+        \ 'html': 'css,javascript'
+    \ },
 \ }
 
 "------ALE------
