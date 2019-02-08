@@ -1,5 +1,5 @@
 "Resets line number settings for NERDTree, so it can work with Numbers plugin.
-autocmd WinEnter,WinEnter * call <sid>SetLineNumbers()
+autocmd WinEnter * call <sid>SetLineNumbers()
 
 function s:SetLineNumbers()
     if &filetype == 'nerdtree'

@@ -26,9 +26,9 @@ Plug 'gcavallanti/vim-noscrollbar'
 Plug 'aperezdc/vim-template'
 
 " Snippets
-" Plug 'marcweber/vim-addon-mw-utils' " Sniptmate dependency
-" Plug 'tomtom/tlib_vim' " Sniptmate dependency
-" Plug 'garbas/vim-snipmate'
+Plug 'marcweber/vim-addon-mw-utils' " Sniptmate dependency
+Plug 'tomtom/tlib_vim' " Sniptmate dependency
+Plug 'garbas/vim-snipmate'
 
 " ALE (Asynchronous Lint Engine)
 " Plug 'w0rp/ale'
@@ -128,8 +128,11 @@ let g:templates_directory = $MYRUNTIME . '/templates'
 let g:templates_no_builtin_templates = 1
 
 "------SNIPMATE------
-" let g:snipMate = {}
-" let g:snipMate.snippet_version = 1
+let g:snips_no_mappings = 1
+let g:snipMate = {
+    \ 'snippet_version': 1,
+    \ 'no_default_aliases': 1,
+\ }
 
 "------ALE------
 " let g:ale_enabled = 0
@@ -152,6 +155,7 @@ let g:lengthmatters_excluded = [
 
 "------BETTER-WHITESPACE------
 let g:strip_whitespace_on_save = 1
+let g:strip_whitespace_confirm = 0
 let g:strip_whitelines_at_eof = 1
 let g:show_spaces_that_precede_tabs = 1
 "let g:better_whitespace_filetypes_blacklist=['vim']

@@ -399,7 +399,59 @@ nnoremap <silent> <space>b :BuffergatorToggle<cr>
 " Toggle relative numbers.
 nnoremap <silent> <space>1 :NumbersToggle<cr>
 
+"------SNIPMATE------
+imap <tab> <Plug>snipMateNextOrTrigger
+smap <tab> <Plug>snipMateNextOrTrigger
+
+imap <s-tab> <Plug>snipMateBack
+smap <s-tab> <Plug>snipMateBack
+
+xmap <cr><cr> <Plug>snipMateVisual
+
+"------ENTER-SNIPPETS------
+function s:MakeSnippetMap(snippet, direction)
+    let open = a:direction ? 'o' : 'O'
+
+    let enter_insert = empty(getline('.')) ? 'i' : open
+
+    return enter_insert . a:snippet . "\<tab>"
+endfunction
+
+" Esc
+nnoremap <expr> <cr><esc> '\<nop\>'
+nnoremap <s-cr><esc> '\<nop\>'
+
+" Function
+nmap <expr> <s-cr>f <sid>MakeSnippetMap('f', 0)
+nmap <expr> <cr>f <sid>MakeSnippetMap('f', 1)
+xmap <cr>f <cr><cr>f<tab>
+
+" If
+nmap <expr> <s-cr>ii <sid>MakeSnippetMap('if', 0)
+nmap <expr> <cr>ii <sid>MakeSnippetMap('if', 1)
+xmap <cr>ii <cr><cr>if<tab>
+
+nmap <expr> <s-cr>il <sid>MakeSnippetMap('ifl', 0)
+nmap <expr> <cr>il <sid>MakeSnippetMap('ifl', 1)
+xmap <cr>il <cr><cr>ifl<tab>
+
+" While
+nmap <expr> <s-cr>w <sid>MakeSnippetMap('w', 0)
+nmap <expr> <cr>w <sid>MakeSnippetMap('w', 1)
+xmap <cr>w <cr><cr>w<tab>
+
+" For
+nmap <expr> <s-cr>r <sid>MakeSnippetMap('r', 0)
+nmap <expr> <cr>r <sid>MakeSnippetMap('r', 1)
+xmap <cr>r <cr><cr>r<tab>
+
+" Section
+nmap <expr> <s-cr>- <sid>MakeSnippetMap('-', 0)
+nmap <expr> <cr>- <sid>MakeSnippetMap('-', 1)
+xmap <cr>- <cr><cr>-<tab>
+
 "------LEADER------
+" Esc
 nnoremap <expr> <leader><esc> '\<nop\>'
 
 "------NERDTree------

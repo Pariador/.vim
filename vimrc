@@ -4,11 +4,11 @@ set encoding =utf-8 " Vim internal encoding.
 
 "------ENVIRONMENT-VARIABLES------
 let $MYRUNTIME = '~/.vim'
-let $MYVIMRC = expand('$MYRUNTIME/vimrc')
-let $MYGVIMRC = expand('$MYRUNTIME/gvimrc')
+let $VIMRC = expand('$MYRUNTIME/vimrc')
+let $GVIMRC = expand('$MYRUNTIME/gvimrc')
 
 "------RUNTIMEPATH------
-let s:runtimes = [$VIMRUNTIME, $MYRUNTIME, $MYRUNTIME . '/after']
+let s:runtimes = [$VIMRUNTIME, expand($MYRUNTIME), $MYRUNTIME . '/after']
 
 let &runtimepath = join(s:runtimes, ',')
 

@@ -1,27 +1,44 @@
+# Function
 snippet f
 	function$1 ${2:FUNCTION_NAME}
-		$3
+		${3:${VISUAL}}
 	endfunction
 
+# If
 snippet if
 	if ${1:true}
-		$2
+		${2:${VISUAL}}
 	endif
 
 snippet ifl
 	if ${1:true}
-		$2
+		${2:${VISUAL}}
 	else
 		$3
 	endif
 
 snippet lif
 	elseif ${1:true}
-		$2
+		${2:${VISUAL}}
 
 snippet l
 	else
-		$1
+		${1:${VISUAL}}
 
 snippet eif
 	endif
+
+# Loops
+snippet w
+	while ${1:true}
+		${2:${VISUAL}}
+	endwhile
+
+snippet r
+	for (${1:i} in ${2:range($3)})
+		${4:${VISUAL}}
+	endfor
+
+# Section
+snippet -
+	"------${1:SECTION}------
