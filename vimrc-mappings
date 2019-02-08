@@ -461,3 +461,59 @@ let g:NERDTreeMapJumpNextSibling = '<c-l>'
 "------VARIOUS------
 "Show highlight group.
 nnoremap <silent> <f8> :so $VIMRUNTIME/syntax/hitest.vim<cr>
+
+"------EMMET------
+" Since there is no good way to remove the mappings that aren't needed.
+let g:user_emmet_leader_key = '<s-f23>'
+
+function! s:InstallEmmetMappings()
+    imap <buffer> <a-m><a-m> <plug>(emmet-expand-abbr)
+    imap <buffer> <a-m>m <plug>(emmet-expand-abbr)
+    xmap <buffer> <a-m><a-m> <plug>(emmet-expand-abbr)
+    xmap <buffer> <a-m>m <plug>(emmet-expand-abbr)
+
+    imap <buffer> <a-m><a-k> <plug>(emmet-move-prev)
+    imap <buffer> <a-m>k <plug>(emmet-move-prev)
+    imap <buffer> <a-m><a-l> <plug>(emmet-move-next)
+    imap <buffer> <a-m>l <plug>(emmet-move-next)
+    nmap <buffer> <a-m><a-k> <plug>(emmet-move-prev)
+    nmap <buffer> <a-m>k <plug>(emmet-move-prev)
+    nmap <buffer> <a-m><a-l> <plug>(emmet-move-next)
+    nmap <buffer> <a-m>l <plug>(emmet-move-next)
+
+    imap <buffer> <a-m><a-d> <plug>(emmet-remove-tag)
+    imap <buffer> <a-m>d <plug>(emmet-remove-tag)
+    nmap <buffer> <a-m><a-d> <plug>(emmet-remove-tag)
+    nmap <buffer> <a-m>d <plug>(emmet-remove-tag)
+
+    imap <buffer> <a-m><a-c> <plug>(emmet-update-tag)
+    imap <buffer> <a-m>c <plug>(emmet-update-tag)
+    nmap <buffer> <a-m><a-c> <plug>(emmet-update-tag)
+    nmap <buffer> <a-m>c <plug>(emmet-update-tag)
+
+    imap <buffer> <a-m><a-v> <plug>(emmet-balance-tag-inward)
+    imap <buffer> <a-m>v <plug>(emmet-balance-tag-inward)
+    imap <buffer> <a-m><a-V> <plug>(emmet-balance-tag-outward)
+    imap <buffer> <a-m>V <plug>(emmet-balance-tag-outward)
+    nmap <buffer> <a-m><a-v> <plug>(emmet-balance-tag-inward)
+    nmap <buffer> <a-m>v <plug>(emmet-balance-tag-inward)
+    nmap <buffer> <a-m><a-V> <plug>(emmet-balance-tag-outward)
+    nmap <buffer> <a-m>V <plug>(emmet-balance-tag-outward)
+    xmap <buffer> <a-m><a-v> <plug>(emmet-balance-tag-inward)
+    xmap <buffer> <a-m>v <plug>(emmet-balance-tag-inward)
+    xmap <buffer> <a-m><a-V> <plug>(emmet-balance-tag-outward)
+    xmap <buffer> <a-m>V <plug>(emmet-balance-tag-outward)
+
+    imap <buffer> <a-m><a-o> <plug>(emmet-split-join-tag)
+    imap <buffer> <a-m>o <plug>(emmet-split-join-tag)
+    nmap <buffer> <a-m><a-o> <plug>(emmet-split-join-tag)
+    nmap <buffer> <a-m>o <plug>(emmet-split-join-tag)
+
+    imap <buffer> <a-m><a-i> <plug>(emmet-image-size)
+    imap <buffer> <a-m>i <plug>(emmet-image-size)
+    nmap <buffer> <a-m><a-i> <plug>(emmet-image-size)
+    nmap <buffer> <a-m>i <plug>(emmet-image-size)
+
+    EmmetInstall
+endfunction
+autocmd FileType html,css call <sid>InstallEmmetMappings()
