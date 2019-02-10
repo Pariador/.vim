@@ -323,6 +323,12 @@ nnoremap g8 g*
 nnoremap <a-8> *<c-o>
 nnoremap g<a-8> g*<c-o>
 
+" Search visual selection.
+nmap <space>? <plug>VisualSearchPrev
+nmap <space>/ <plug>VisualSearchNext
+xmap <space>? <plug>VisualSearchPrev
+xmap <space>/ <plug>VisualSearchNext
+
 "------JOIN------
 nnoremap gj J
 xnoremap gj J
@@ -376,12 +382,18 @@ nnoremap ~ Q
 
 nnoremap <a-`> gQ
 
-nnoremap g` q:
-xnoremap g` q:
+" Reset enter for normal mode command-line editing.
+function! s:ResetEnter()
+    nnoremap <buffer> <nowait> <cr> <cr>
+    inoremap <buffer> <nowait> <cr> <cr>
+endfunction
 
-nnoremap g/ q/
+nnoremap g` q::<c-u>call <sid>ResetEnter()<cr>
+xnoremap g` q::<c-u>call <sid>ResetEnter()<cr>
 
-nnoremap g? q?
+nnoremap g/ q/:<c-u>call <sid>ResetEnter()<cr>
+
+nnoremap g? q?:<c-u>call <sid>ResetEnter()<cr>
 
 nmap <expr> <space>` '`norm '
 nmap <expr> <space>]` ']`norm '
@@ -411,7 +423,7 @@ imap <c-tab> <plug>snipMateTrigger
 xmap <cr><cr> <plug>snipMateVisual
 
 "------ENTER-SNIPPETS------
-function s:MakeSnippetMap(snippet, direction)
+function! s:MakeSnippetMap(snippet, direction)
     let open = a:direction ? 'o' : 'O'
 
     let enter_insert = empty(getline('.')) ? 'i' : open
