@@ -89,6 +89,7 @@ let &statusline .= '%=' " Switch to right side.
 let &statusline .= '[%02.l, %02.c]' " Row and Col.
 let &statusline .= '   ' " Padding.
 let &statusline .= '[%03.P]' " % of file on screen.
+
 "------PLUGINS------
 source $MYRUNTIME/vimrc-plugins
 

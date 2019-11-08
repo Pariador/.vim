@@ -8,7 +8,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'jeetsukumaran/vim-buffergator'
 
 " Echo buffers on the command line when switching buffers.
-Plug 'bling/vim-bufferline'
+" Plug 'bling/vim-bufferline'
 
 " For moving buffers across windows.
 Plug 'wesq3/vim-windowswap'
@@ -71,7 +71,12 @@ Plug 'mattn/emmet-vim'
 " Syntax
 " For plugin syntax files to work, disable the corresponding
 " original vim syntax files.
+" Javascript
 Plug 'pangloss/vim-javascript'
+
+" Markdown
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
 
 " Themes.
 Plug 'morhetz/gruvbox'
@@ -169,10 +174,12 @@ let g:indentLine_enabled = 0
 let g:indentLine_showFirstIndentLevel = 1
 let g:indentLine_first_char = "|"
 let g:indentLine_char = "|"
+let g:indentLine_concealcursor = ''
 if has("gui_running")
     let g:indentLine_first_char = "┇"
     let g:indentLine_char = "┇"
 endif
+" let g:indentLine_fileTypeExclude = ['markdown']
 
 "------EMMET------
 let g:user_emmet_install_global = 0
