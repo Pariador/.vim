@@ -100,7 +100,7 @@ let g:loaded_netrwPlugin = 1
 "------NERDTree------
 let g:NERDTreeBookmarksFile = expand($MYRUNTIME . "/nerdmarks")
 let g:NERDTreeQuitOnOpen = 1
-let g:NERDTreeWinPos = "right"
+let g:NERDTreeWinPos = "left"
 let g:NERDTreeWinSize = 40
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
@@ -111,6 +111,7 @@ let g:buffergator_suppress_keymaps = 1
 let g:buffergator_display_regime = "parentdir"
 let g:buffergator_window_statusline = 0
 let g:buffergator_tab_statusline = 0
+let g:buffergator_viewport_split_policy = "B"
 
 "------BUFFERLINE------
 let g:bufferline_active_buffer_left = g:open_fat_bracket
