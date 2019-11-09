@@ -436,51 +436,51 @@ nnoremap <expr> <cr><esc> '\<nop\>'
 nnoremap <s-cr><esc> '\<nop\>'
 
 " Function
-nmap <expr> <s-cr>f <sid>MakeSnippetMap('f', 0)
-nmap <expr> <cr>f <sid>MakeSnippetMap('f', 1)
-xmap <cr>f <cr><cr>f<tab>
+nmap <expr> <s-cr>fn <sid>MakeSnippetMap('fn', 0)
+nmap <expr> <cr>fn <sid>MakeSnippetMap('fn', 1)
+xmap <cr>fn <cr><cr>fn<tab>
 
 " If
-nmap <expr> <s-cr>ii <sid>MakeSnippetMap('if', 0)
-nmap <expr> <cr>ii <sid>MakeSnippetMap('if', 1)
-xmap <cr>ii <cr><cr>if<tab>
+nmap <expr> <s-cr>if <sid>MakeSnippetMap('if', 0)
+nmap <expr> <cr>if <sid>MakeSnippetMap('if', 1)
+xmap <cr>if <cr><cr>if<tab>
 
-nmap <expr> <s-cr>il <sid>MakeSnippetMap('ifl', 0)
-nmap <expr> <cr>il <sid>MakeSnippetMap('ifl', 1)
-xmap <cr>il <cr><cr>ifl<tab>
+nmap <expr> <s-cr>ifel <sid>MakeSnippetMap('ifel', 0)
+nmap <expr> <cr>ifel <sid>MakeSnippetMap('ifel', 1)
+xmap <cr>ifel <cr><cr>ifel<tab>
 
 " While
-nmap <expr> <s-cr>w <sid>MakeSnippetMap('w', 0)
-nmap <expr> <cr>w <sid>MakeSnippetMap('w', 1)
-xmap <cr>w <cr><cr>w<tab>
+nmap <expr> <s-cr>wl <sid>MakeSnippetMap('wl', 0)
+nmap <expr> <cr>wl <sid>MakeSnippetMap('wl', 1)
+xmap <cr>wl <cr><cr>wl<tab>
 
 " For
-nmap <expr> <s-cr>rr <sid>MakeSnippetMap('r', 0)
-nmap <expr> <cr>rr <sid>MakeSnippetMap('r', 1)
-xmap <cr>rr <cr><cr>r<tab>
+nmap <expr> <s-cr>for <sid>MakeSnippetMap('for', 0)
+nmap <expr> <cr>for <sid>MakeSnippetMap('for', 1)
+xmap <cr>for <cr><cr>for<tab>
 
-nmap <expr> <s-cr>R <sid>MakeSnippetMap('rr', 0)
-nmap <expr> <cr>R <sid>MakeSnippetMap('rr', 1)
-xmap <cr>R <cr><cr>rr<tab>
+nmap <expr> <s-cr>frr <sid>MakeSnippetMap('frr', 0)
+nmap <expr> <cr>frr <sid>MakeSnippetMap('frr', 1)
+xmap <cr>frr <cr><cr>frr<tab>
 
-nmap <expr> <s-cr>ro <sid>MakeSnippetMap('ro', 0)
-nmap <expr> <cr>ro <sid>MakeSnippetMap('ro', 1)
-xmap <cr>ro <cr><cr>ro<tab>
+nmap <expr> <s-cr>fro <sid>MakeSnippetMap('fro', 0)
+nmap <expr> <cr>fro <sid>MakeSnippetMap('fro', 1)
+xmap <cr>fro <cr><cr>fro<tab>
 
-nmap <expr> <s-cr>ri <sid>MakeSnippetMap('ri', 0)
-nmap <expr> <cr>ri <sid>MakeSnippetMap('ri', 1)
-xmap <cr>ri <cr><cr>ri<tab>
+nmap <expr> <s-cr>fri <sid>MakeSnippetMap('fri', 0)
+nmap <expr> <cr>fri <sid>MakeSnippetMap('fri', 1)
+xmap <cr>fri <cr><cr>fri<tab>
 
 
 " Print
-nmap <expr> <s-cr>p <sid>MakeSnippetMap('p', 0)
-nmap <expr> <cr>p <sid>MakeSnippetMap('p', 1)
-xmap <cr>p <cr><cr>p<tab>
+nmap <expr> <s-cr>pr <sid>MakeSnippetMap('pr', 0)
+nmap <expr> <cr>pr <sid>MakeSnippetMap('pr', 1)
+xmap <cr>pr <cr><cr>pr<tab>
 
 " Section
-nmap <expr> <s-cr>- <sid>MakeSnippetMap('-', 0)
-nmap <expr> <cr>- <sid>MakeSnippetMap('-', 1)
-xmap <cr>- <cr><cr>-<tab>
+nmap <expr> <s-cr>-- <sid>MakeSnippetMap('--' 0)
+nmap <expr> <cr>-- <sid>MakeSnippetMap('--', 1)
+xmap <cr>-- <cr><cr>--<tab>
 
 " Tags
 nmap <expr> <s-cr>t <sid>MakeSnippetMap('t', 0)

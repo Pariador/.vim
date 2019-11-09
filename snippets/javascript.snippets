@@ -1,5 +1,5 @@
 # Function
-snippet f
+snippet fn
 	function ${1:FUNCTION_NAME}($2) {
 		${0:${VISUAL}}
 	}
@@ -10,24 +10,24 @@ snippet if
 		${0:${VISUAL}}
 	}
 
-snippet ifl
+snippet el
+	else {
+		${0:${VISUAL}}
+	}
+
+snippet ifel
 	if (${1:true}) {
 		${2:${VISUAL}}
 	} else {
 		$0
 	}
 
-snippet lif
+snippet elif
 	else if (${1:true}) {
 		${0:${VISUAL}}
 	}
 
-snippet l
-	else {
-		${0:${VISUAL}}
-	}
-
-snippet s
+snippet sw
 	switch(${1:value}) {
 	  case ${2:0}:
 		${3:${VISUAL}}
@@ -37,31 +37,31 @@ snippet s
 	}
 
 # Loops
-snippet w
+snippet wl
 	while (${1:true}) {
 		${0:${VISUAL}}
 	}
 
-snippet r
+snippet for
 	for (${1:var }${2:i} = ${3:0}; $2 < ${4:lenght}; $2++) {
 		${0:${VISUAL}}
 	}
 
-snippet rr
+snippet frr
 	for (${1:var }${2:i} = ${3:${4:length} - 1}; $2 >= ${5:0}; $2--) {
 		${0:${VISUAL}}
 	}
 
-snippet ro
+snippet fro
 	for (${1:var }${2:item} of ${3:items}) {
 		${0:${VISUAL}}
 	}
 
-snippet ri
+snippet fri
 	for (${1:var }${2:key} in ${3:obj}) {
 		${0:${VISUAL}}
 	}
 
 # Print
-snippet p
+snippet pr
 	console.log(${1:${VISUAL}});

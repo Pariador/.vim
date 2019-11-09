@@ -1,5 +1,5 @@
 # Function
-snippet f
+snippet fn
 	function$1 ${2:FUNCTION_NAME}($3)
 		${4:${VISUAL}}
 	endfunction
@@ -10,39 +10,39 @@ snippet if
 		${2:${VISUAL}}
 	endif
 
-snippet ifl
+snippet el
+	else
+		${1:${VISUAL}}
+
+snippet ifel
 	if ${1:true}
 		${2:${VISUAL}}
 	else
 		$3
 	endif
 
-snippet lif
+snippet elif
 	elseif ${1:true}
 		${2:${VISUAL}}
-
-snippet l
-	else
-		${1:${VISUAL}}
 
 snippet eif
 	endif
 
 # Loops
-snippet w
+snippet wl
 	while ${1:true}
 		${2:${VISUAL}}
 	endwhile
 
-snippet r
+snippet for
 	for (${1:i} in ${2:range($3)})
 		${4:${VISUAL}}
 	endfor
 
 # Print
-snippet p
+snippet pr
 	echo ${1:${VISUAL}}
 
 # Section
-snippet -
+snippet --
 	"------${1:SECTION}------
