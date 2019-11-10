@@ -510,6 +510,8 @@ let g:user_emmet_leader_key = '<s-f23>'
 function! s:InstallEmmetMappings()
     imap <buffer> <a-m><a-m> <plug>(emmet-expand-abbr)
     imap <buffer> <a-m>m <plug>(emmet-expand-abbr)
+    nmap <buffer> <a-m><a-m> <plug>(emmet-expand-abbr)
+    nmap <buffer> <a-m>m <plug>(emmet-expand-abbr)
     xmap <buffer> <a-m><a-m> <plug>(emmet-expand-abbr)
     xmap <buffer> <a-m>m <plug>(emmet-expand-abbr)
 
