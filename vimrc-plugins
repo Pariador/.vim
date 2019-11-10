@@ -39,6 +39,9 @@ Plug 'tpope/vim-commentary'
 " Insert or delete brackets, parens, quotes in pairs.
 Plug 'jiangmiao/auto-pairs'
 
+" Insert tags in pairs.
+Plug 'alvan/vim-closetag'
+
 " Repeat plugin commands with '.'.
 Plug 'tpope/vim-repeat'
 Plug 'vim-scripts/visualrepeat'
