@@ -363,12 +363,17 @@ nmap <c-w>: <c-w>m<c-w>;<c-w>m
 " completion
 inoremap <a-k> <c-p>
 inoremap <a-l> <c-n>
+inoremap <a-o> <c-x><c-o>
+inoremap <a-f> <c-x><c-f>
 
+" Break and open new line.
+inoremap <c-cr> <cr><cr><up><tab>
+
+" auto-pairs wrap (surround)
+let g:AutoPairsShortcutFastWrap = '<c-s>'
+"
 " Execute normal command.
 inoremap <s-esc> <c-o>
-
-" auto-pairs wrap
-let g:AutoPairsShortcutFastWrap = '<c-s>'
 
 "------EX------
 nnoremap <expr> ` v:count ? printf(':<c-u>.,.+%d', v:count) : ':'
