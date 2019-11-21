@@ -431,7 +431,7 @@ xmap <cr><cr> <plug>snipMateVisual
 function! s:MakeSnippetMap(snippet, direction)
     let open = a:direction ? 'o' : 'O'
 
-    let enter_insert = empty(getline('.')) ? 'i' : open
+    let enter_insert = empty(trim(getline('.'))) ? 'i' : open
 
     return enter_insert . a:snippet . "\<tab>"
 endfunction
@@ -440,61 +440,73 @@ endfunction
 nnoremap <expr> <cr><esc> '\<nop\>'
 nnoremap <s-cr><esc> '\<nop\>'
 
-" Function
-nmap <expr> <s-cr>fn <sid>MakeSnippetMap('fn', 0)
-nmap <expr> <cr>fn <sid>MakeSnippetMap('fn', 1)
-xmap <cr>fn <cr><cr>fn<tab>
+" Method (Function)
+nmap <expr> <s-cr>m <sid>MakeSnippetMap('m', 0)
+nmap <expr> <cr>m <sid>MakeSnippetMap('m', 1)
+xmap <cr>m <cr><cr>m<tab>
 
-" If
-nmap <expr> <s-cr>if <sid>MakeSnippetMap('if', 0)
-nmap <expr> <cr>if <sid>MakeSnippetMap('if', 1)
-xmap <cr>if <cr><cr>if<tab>
+" If, Else
+nmap <expr> <s-cr>ff <sid>MakeSnippetMap('f', 0)
+nmap <expr> <cr>ff <sid>MakeSnippetMap('f', 1)
+xmap <cr>ff <cr><cr>f<tab>
 
-nmap <expr> <s-cr>ifel <sid>MakeSnippetMap('ifel', 0)
-nmap <expr> <cr>ifel <sid>MakeSnippetMap('ifel', 1)
-xmap <cr>ifel <cr><cr>ifel<tab>
+nmap <expr> <s-cr>fl <sid>MakeSnippetMap('fl', 0)
+nmap <expr> <cr>fl <sid>MakeSnippetMap('fl', 1)
+xmap <cr>fl <cr><cr>fl<tab>
 
-" While
-nmap <expr> <s-cr>wl <sid>MakeSnippetMap('wl', 0)
-nmap <expr> <cr>wl <sid>MakeSnippetMap('wl', 1)
-xmap <cr>wl <cr><cr>wl<tab>
+nmap <expr> <s-cr>ll <sid>MakeSnippetMap('l', 0)
+nmap <expr> <cr>ll <sid>MakeSnippetMap('l', 1)
+xmap <cr>ll <cr><cr>l<tab>
 
-" For
-nmap <expr> <s-cr>for <sid>MakeSnippetMap('for', 0)
-nmap <expr> <cr>for <sid>MakeSnippetMap('for', 1)
-xmap <cr>for <cr><cr>for<tab>
+nmap <expr> <s-cr>lf <sid>MakeSnippetMap('lf', 0)
+nmap <expr> <cr>lf <sid>MakeSnippetMap('lf', 1)
+xmap <cr>lf <cr><cr>lf<tab>
 
-nmap <expr> <s-cr>frr <sid>MakeSnippetMap('frr', 0)
-nmap <expr> <cr>frr <sid>MakeSnippetMap('frr', 1)
-xmap <cr>frr <cr><cr>frr<tab>
+" Switch
+nmap <expr> <s-cr>s <sid>MakeSnippetMap('s', 0)
+nmap <expr> <cr>s <sid>MakeSnippetMap('s', 1)
+xmap <cr>s <cr><cr>s<tab>
 
-nmap <expr> <s-cr>fro <sid>MakeSnippetMap('fro', 0)
-nmap <expr> <cr>fro <sid>MakeSnippetMap('fro', 1)
-xmap <cr>fro <cr><cr>fro<tab>
+" While w
+nmap <expr> <s-cr>w <sid>MakeSnippetMap('w', 0)
+nmap <expr> <cr>w <sid>MakeSnippetMap('w', 1)
+xmap <cr>w <cr><cr>w<tab>
 
-nmap <expr> <s-cr>fri <sid>MakeSnippetMap('fri', 0)
-nmap <expr> <cr>fri <sid>MakeSnippetMap('fri', 1)
-xmap <cr>fri <cr><cr>fri<tab>
+" For rr RR ri ro
+nmap <expr> <s-cr>rr <sid>MakeSnippetMap('r', 0)
+nmap <expr> <cr>rr <sid>MakeSnippetMap('r', 1)
+xmap <cr>rr <cr><cr>r<tab>
 
+nmap <expr> <s-cr>R <sid>MakeSnippetMap('R', 0)
+nmap <expr> <cr>R <sid>MakeSnippetMap('R', 1)
+xmap <cr>R <cr><cr>R<tab>
 
-" Print
-nmap <expr> <s-cr>pr <sid>MakeSnippetMap('pr', 0)
-nmap <expr> <cr>pr <sid>MakeSnippetMap('pr', 1)
-xmap <cr>pr <cr><cr>pr<tab>
+nmap <expr> <s-cr>ro <sid>MakeSnippetMap('ro', 0)
+nmap <expr> <cr>ro <sid>MakeSnippetMap('ro', 1)
+xmap <cr>ro <cr><cr>ro<tab>
 
-" Section
-nmap <expr> <s-cr>-- <sid>MakeSnippetMap('--' 0)
-nmap <expr> <cr>-- <sid>MakeSnippetMap('--', 1)
-xmap <cr>-- <cr><cr>--<tab>
+nmap <expr> <s-cr>ri <sid>MakeSnippetMap('ri', 0)
+nmap <expr> <cr>ri <sid>MakeSnippetMap('ri', 1)
+xmap <cr>ri <cr><cr>ri<tab>
+
+" Print p
+nmap <expr> <s-cr>p <sid>MakeSnippetMap('p', 0)
+nmap <expr> <cr>p <sid>MakeSnippetMap('p', 1)
+xmap <cr>p <cr><cr>p<tab>
+
+" Section -
+nmap <expr> <s-cr>- <sid>MakeSnippetMap('-' 0)
+nmap <expr> <cr>- <sid>MakeSnippetMap('-', 1)
+xmap <cr>- <cr><cr>-<tab>
 
 " Tags
 nmap <expr> <s-cr>t <sid>MakeSnippetMap('t', 0)
 nmap <expr> <cr>t <sid>MakeSnippetMap('t', 1)
-xmap <cr>- <cr><cr>t<tab>
+xmap <cr>t <cr><cr>t<tab>
 
 nmap <expr> <s-cr>/ <sid>MakeSnippetMap('/', 0)
 nmap <expr> <cr>/ <sid>MakeSnippetMap('/', 1)
-xmap <cr>- <cr><cr>/<tab>
+xmap <cr>/ <cr><cr>/<tab>
 
 "------LEADER------
 " Esc
