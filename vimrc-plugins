@@ -36,6 +36,9 @@ Plug 'garbas/vim-snipmate'
 " Comments operator.
 Plug 'tpope/vim-commentary'
 
+" Replace with register operator.
+Plug 'vim-scripts/ReplaceWithRegister'
+
 " Insert or delete brackets, parens, quotes in pairs.
 Plug 'jiangmiao/auto-pairs'
 
@@ -59,7 +62,7 @@ Plug 'kana/vim-textobj-fold'
 " Highlight text over textwidth.
 Plug 'whatyouhide/vim-lengthmatters'
 
-" For highlighting and removing trailig whitespace.
+" For highlighting and removing trailing whitespace.
 Plug 'ntpeters/vim-better-whitespace'
 
 " Indent guides for spaces.
