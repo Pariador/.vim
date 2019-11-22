@@ -435,9 +435,11 @@ xmap <cr><cr> <plug>snipMateVisual
 function! s:MakeSnippetMap(snippet, direction)
     let open = a:direction ? 'o' : 'O'
 
-    let enter_insert = empty(trim(getline('.'))) ? 'i' : open
+    let enter_insert = empty(trim(getline('.'))) ? 'cc' : open
 
-    return enter_insert . a:snippet . "\<tab>"
+    let g:the_map = enter_insert . a:snippet . "\<c-tab>"
+
+    return g:the_map
 endfunction
 
 " Esc
@@ -449,7 +451,7 @@ nmap <expr> <s-cr>m <sid>MakeSnippetMap('m', 0)
 nmap <expr> <cr>m <sid>MakeSnippetMap('m', 1)
 xmap <cr>m <cr><cr>m<tab>
 
-" If, Else
+" Conditionals
 nmap <expr> <s-cr>ff <sid>MakeSnippetMap('f', 0)
 nmap <expr> <cr>ff <sid>MakeSnippetMap('f', 1)
 xmap <cr>ff <cr><cr>f<tab>
@@ -466,17 +468,15 @@ nmap <expr> <s-cr>lf <sid>MakeSnippetMap('lf', 0)
 nmap <expr> <cr>lf <sid>MakeSnippetMap('lf', 1)
 xmap <cr>lf <cr><cr>lf<tab>
 
-" Switch
 nmap <expr> <s-cr>s <sid>MakeSnippetMap('s', 0)
 nmap <expr> <cr>s <sid>MakeSnippetMap('s', 1)
 xmap <cr>s <cr><cr>s<tab>
 
-" While w
+" Loops
 nmap <expr> <s-cr>w <sid>MakeSnippetMap('w', 0)
 nmap <expr> <cr>w <sid>MakeSnippetMap('w', 1)
 xmap <cr>w <cr><cr>w<tab>
 
-" For rr RR ri ro
 nmap <expr> <s-cr>rr <sid>MakeSnippetMap('r', 0)
 nmap <expr> <cr>rr <sid>MakeSnippetMap('r', 1)
 xmap <cr>rr <cr><cr>r<tab>
@@ -493,12 +493,17 @@ nmap <expr> <s-cr>ri <sid>MakeSnippetMap('ri', 0)
 nmap <expr> <cr>ri <sid>MakeSnippetMap('ri', 1)
 xmap <cr>ri <cr><cr>ri<tab>
 
-" Print p
+" Print
 nmap <expr> <s-cr>p <sid>MakeSnippetMap('p', 0)
 nmap <expr> <cr>p <sid>MakeSnippetMap('p', 1)
 xmap <cr>p <cr><cr>p<tab>
 
-" Section -
+" Exceptions
+nmap <expr> <s-cr>e <sid>MakeSnippetMap('e', 0)
+nmap <expr> <cr>e <sid>MakeSnippetMap('e', 1)
+xmap <cr>e <cr><cr>e<tab>
+
+" Section
 nmap <expr> <s-cr>- <sid>MakeSnippetMap('-' 0)
 nmap <expr> <cr>- <sid>MakeSnippetMap('-', 1)
 xmap <cr>- <cr><cr>-<tab>

@@ -1,10 +1,20 @@
-# Function
+# Functions
 snippet m
 	function ${1:FUNCTION_NAME}($2) {
 		${0:${VISUAL}}
 	}
 
-# If
+snippet fn
+	function$2($1) {
+		${0:${VISUAL}}
+	}$3
+
+snippet iife
+	(function($1) {
+		${0:${VISUAL}}
+	})($2);
+
+# Conditionals
 snippet f
 	if (${1:true}) {
 		${0:${VISUAL}}
@@ -64,4 +74,8 @@ snippet ri
 
 # Print
 snippet p
-	console.log(${1:${VISUAL}});
+	console.log(${1:${VISUAL}});$0
+
+# Exceptions
+snippet e
+	throw new Error($1);$0
