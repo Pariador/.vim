@@ -31,7 +31,7 @@ Plug 'tomtom/tlib_vim' " Sniptmate dependency
 Plug 'garbas/vim-snipmate'
 
 " ALE (Asynchronous Lint Engine)
-" Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 
 " Comments operator.
 Plug 'tpope/vim-commentary'
@@ -149,8 +149,11 @@ let g:snipMate = {
     \ },
 \ }
 
-"------ALE------
+" ------ALE------
 " let g:ale_enabled = 0
+let g:ale_echo_cursor = 0
+let g:ale_sign_error = '!!'
+let g:ale_sign_warning = '**'
 
 "------SURROUND-TEXT-OBJECT------
 let g:surround_no_mappings = 1

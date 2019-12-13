@@ -232,26 +232,26 @@ nnoremap <silent> <expr> <a-;>
     \ printf(':<c-u>%s next<cr>', v:count ? v:count : '')
 
 "------QUICKFIX-LISTS------
-nnoremap <silent> <expr> -
-    \ printf(':<c-u>%s cprevious<cr>', v:count ? v:count : '')
-nnoremap <silent> <expr> =
-    \ printf(':<c-u>%s cnext<cr>', v:count ? v:count : '')
+" nnoremap <silent> <expr> -
+"     \ printf(':<c-u>%s cprevious<cr>', v:count ? v:count : '')
+" nnoremap <silent> <expr> =
+"     \ printf(':<c-u>%s cnext<cr>', v:count ? v:count : '')
 
-nnoremap <silent> <expr> <f9>
-    \ printf(':<c-u>colder %s<cr>', v:count ? v:count : '')
-nnoremap <silent> <expr> <f10>
-    \ printf(':<c-u>cnewer %s<cr>', v:count ? v:count : '')
+" nnoremap <silent> <expr> <f9>
+"     \ printf(':<c-u>colder %s<cr>', v:count ? v:count : '')
+" nnoremap <silent> <expr> <f10>
+"     \ printf(':<c-u>cnewer %s<cr>', v:count ? v:count : '')
 
 "------LOCATION-LISTS------
-nnoremap <silent> <expr> _
+nnoremap <silent> <expr> -
     \ printf(':<c-u>%s lprevious<cr>', v:count ? v:count : '')
-nnoremap <silent> <expr> +
+nnoremap <silent> <expr> =
     \ printf(':<c-u>%s lnext<cr>', v:count ? v:count : '')
 
-nnoremap <silent> <expr> <s-f9>
-    \ printf(':<c-u>lolder %s<cr>', v:count ? v:count : '')
-nnoremap <silent> <expr> <s-f10>
-    \ printf(':<c-u>lnewer %s<cr>', v:count ? v:count : '')
+" nnoremap <silent> <expr> <s-f9>
+"     \ printf(':<c-u>lolder %s<cr>', v:count ? v:count : '')
+" nnoremap <silent> <expr> <s-f10>
+"     \ printf(':<c-u>lnewer %s<cr>', v:count ? v:count : '')
 
 "------MARKS------
 nnoremap <a-'> m
