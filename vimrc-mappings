@@ -330,8 +330,19 @@ xmap <space>? <plug>VisualSearchPrev
 xmap <space>/ <plug>VisualSearchNext
 
 "------JOIN------
-nnoremap gj J
-xnoremap gj J
+function! s:ModJoinCount(space)
+    let l:count = 1 < v:count ? v:count + 1 : v:count
+    let l:join_cmd = a:space ? "J" : "gJ"
+
+    let res = "\<c-c>" . l:count . l:join_cmd
+    echo res
+    return res
+endfunction
+
+nnoremap <expr> gj <sid>ModJoinCount(1)
+xnoremap <expr> gj <sid>ModJoinCount(1)
+nnoremap <expr> gJ <sid>ModJoinCount(0)
+xnoremap <expr> gJ <sid>ModJoinCount(0)
 
 " Clear search highlights on CTRL-C.
 noremap <silent> <c-c> <c-c>:noh<cr>

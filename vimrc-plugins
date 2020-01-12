@@ -152,6 +152,7 @@ let g:snipMate = {
 " ------ALE------
 " let g:ale_enabled = 0
 let g:ale_echo_cursor = 0
+let g:ale_set_signs = 0
 let g:ale_sign_error = '!!'
 let g:ale_sign_warning = '**'
 
