@@ -1,6 +1,8 @@
-call plug#begin($MYRUNTIME . "/plugged")
+let s:plugged = $MYRUNTIME . '/plugged'
 
 "------VIM-PLUGINS------
+call plug#begin(s:plugged)
+
 " The NERDTree is a file system explorer for the Vim editor.
 Plug 'scrooloose/nerdtree'
 
@@ -74,13 +76,10 @@ Plug 'myusuf3/numbers.vim'
 " Emmet
 Plug 'mattn/emmet-vim'
 
-" Syntax
-" For plugin syntax files to work, disable the corresponding
-" original vim syntax files.
-" Javascript
+" Javascript Syntax
 Plug 'pangloss/vim-javascript'
 
-" Markdown
+" Markdown Syntax
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown'
 
@@ -98,6 +97,23 @@ if has("gui_running")
 endif
 
 call plug#end()
+
+"------FIRST-PLUGINS------
+" First runtimepath directories loaded.
+let s:first_plugins = ['vim-markdown', 'vim-javascript']
+let s:first_plugins = map(s:first_plugins, {i, plg -> s:plugged . '/' . plg})
+
+let s:rtps = split(&runtimepath, ',')
+for s:dir in s:first_plugins
+    let s:i = index(s:rtps, expand(s:dir))
+
+    if s:i != -1
+        call remove(s:rtps, s:i)
+    endif
+endfor
+
+let s:rtps = s:first_plugins + s:rtps
+let &runtimepath = join(s:rtps, ',')
 
 "------DISABLE-NETRW------
 let g:loaded_netrw = 1

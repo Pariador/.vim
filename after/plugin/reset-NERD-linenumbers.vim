@@ -1,4 +1,4 @@
-"Resets line number settings for NERDTree, so it can work with Numbers plugin.
+" Resets line number settings for NERDTree, so it can work with Numbers plugin.
 autocmd WinEnter * call <sid>SetLineNumbers()
 
 function s:SetLineNumbers()

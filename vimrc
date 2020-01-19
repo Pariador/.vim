@@ -8,8 +8,7 @@ let $VIMRC = expand('$MYRUNTIME/vimrc')
 let $GVIMRC = expand('$MYRUNTIME/gvimrc')
 
 "------RUNTIMEPATH------
-let s:runtimes = [$VIMRUNTIME, expand($MYRUNTIME), $MYRUNTIME . '/after']
-
+let s:runtimes = [$VIMRUNTIME, $MYRUNTIME, $MYRUNTIME . '/after']
 let &runtimepath = join(s:runtimes, ',')
 
 "------VIMINFO------
