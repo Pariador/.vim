@@ -101,19 +101,15 @@ call plug#end()
 "------FIRST-PLUGINS------
 " First runtimepath directories loaded.
 let s:first_plugins = ['vim-markdown', 'vim-javascript']
-let s:first_plugins = map(s:first_plugins, {i, plg -> s:plugged . '/' . plg})
+let s:first_plugins = map(s:first_plugins, {i, plugin ->
+    \ expand(s:plugged . '/' . plugin)
+\ })
 
-let s:rtps = split(&runtimepath, ',')
-for s:dir in s:first_plugins
-    let s:i = index(s:rtps, expand(s:dir))
+let s:rtps = filter(split(&runtimepath, ','), {i, path ->
+    \ index(s:first_plugins, path) == -1
+\ })
 
-    if s:i != -1
-        call remove(s:rtps, s:i)
-    endif
-endfor
-
-let s:rtps = s:first_plugins + s:rtps
-let &runtimepath = join(s:rtps, ',')
+let &runtimepath = join(s:first_plugins + s:rtps, ',')
 
 "------DISABLE-NETRW------
 let g:loaded_netrw = 1
