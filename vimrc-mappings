@@ -298,23 +298,23 @@ nnoremap <f2> g+
 " xmap ]o <plug>AddBlanksBelow
 
 "------CLIPBOARD------
-nnoremap gd "+d
-xnoremap gd "+d
+" nnoremap gd "+d
+" xnoremap gd "+d
 
-nnoremap gD "+D
-nnoremap g<a-d> "+d^
+" nnoremap gD "+D
+" nnoremap g<a-d> "+d^
 
-nnoremap gy "+y
-xnoremap gy "+y
+" nnoremap gy "+y
+" xnoremap gy "+y
 
-nnoremap gY "+y$
-nnoremap g<a-y> "+y^
+" nnoremap gY "+y$
+" nnoremap g<a-y> "+y^
 
-nnoremap gp "+p
-xnoremap gp "+p
+" nnoremap gp "+p
+" xnoremap gp "+p
 
-nnoremap gP "+P
-xnoremap gP "+P
+" nnoremap gP "+P
+" xnoremap gP "+P
 
 "------SEARCH------
 nnoremap g3 g#
@@ -372,8 +372,8 @@ nmap <c-w>: <c-w>m<c-w>;<c-w>m
 
 "------INSERT------
 " put (paste)
-inoremap <c-p> <c-r>"
-inoremap <a-p> <c-r>+
+inoremap <c-p> <c-r>*
+" inoremap <a-p> <c-r>+
 
 " completion
 inoremap <a-k> <c-p>

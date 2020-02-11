@@ -24,6 +24,9 @@ set fileformats =dos,unix,mac
 set notimeout " Unfinished mappings don't timeout.
 syntax on
 
+" Use the sys clipboard instead of the unnamed register.
+set clipboard =unnamed
+
 " Enables filetype detection, filetype indenting, and filetype plugins.
 filetype plugin indent on
 
